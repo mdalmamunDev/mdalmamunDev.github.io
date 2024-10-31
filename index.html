@@ -5,28 +5,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Md. Al Mamun | Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        
+    </style>
 </head>
 
 <body class="bg-gray-900 text-white font-sans antialiased">
 
     <div id="app">
         <!-- Header Section -->
-        <header class="text-center py-10 bg-gray-800 relative">
-            <img src="images/profile.jpg" alt="Profile Picture" class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
-            <h1 class="text-4xl font-bold mt-4">Md. Al Mamun</h1>
-            <p class="text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
-            <div class="mt-4">
-                <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
-                <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
-                <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
+        <header class="text-center h-screen relative flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero-banner.jpg');">
+            <!-- Navbar -->
+            <nav class="absolute top-0 left-0 w-full flex items-center justify-between p-5 text-white bg-transparent z-10">
+                <div class="text-2xl font-bold">MyPortfolio</div>
+                <ul class="flex space-x-4 text-lg">
+                    <li><a href="#about" class="hover:underline">About</a></li>
+                    <li><a href="#projects" class="hover:underline">Projects</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+
+            <!-- Content -->
+            <div class="relative text-white text-xl md:text-2xl font-bold z-5">
+                <img src="images/profile.jpg" alt="Profile Picture" class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
+                <h1 class="text-4xl font-bold mt-4">Md. Al Mamun</h1>
+                <p class="text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
+                <div class="mt-4">
+                    <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
+                    <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
+                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
+                </div>
+                <p class="pt-10">{{ heroText }}</p>
             </div>
         </header>
 
+
         <!-- About Me Section -->
-        <section class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+        <section id="about" class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
             <img src="images/profile-formal.png" alt="Md. Al Mamun" class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg md:mb-0">
 
             <div class="text-center md:text-left">
@@ -51,7 +73,7 @@
 
 
         <!-- Projects Section -->
-        <section class="bg-gray-800 py-12">
+        <section id="projects" class="bg-gray-800 py-12">
             <div class="max-w-5xl mx-auto">
                 <h2 class="text-3xl font-semibold text-center">Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
@@ -68,7 +90,7 @@
             </div>
         </section>
 
-        <!-- New Section -->
+        <!-- Information Section -->
         <section class="max-w-5xl mx-auto py-12 px-4">
             <h2 class="text-3xl font-semibold text-center">Additional Information</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
@@ -127,16 +149,18 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section class="max-w-3xl mx-auto py-12 text-center">
-            <h2 class="text-3xl font-semibold">Technologies & Tools</h2>
-            <div class="flex flex-wrap justify-center gap-4 mt-6">
-                <span v-for="skill in skills" :key="skill" class="px-4 py-2 bg-gray-700 rounded-full shadow">{{ skill }}</span>
+        <!-- Technologies Section -->
+        <section class="bg-gray-800 py-12">
+            <div class="max-w-3xl mx-auto py-12 text-center">
+                <h2 class="text-3xl font-semibold">Technologies & Tools</h2>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <span v-for="skill in skills" :key="skill" class="px-4 py-2 bg-gray-700 rounded-full shadow">{{ skill }}</span>
+                </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="bg-gray-800 py-12">
+        <section id="contact" class="py-12">
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl font-semibold">Get in Touch</h2>
                 <p class="mt-4 text-gray-400">Feel free to reach out through social media!</p>
@@ -161,7 +185,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="text-center py-6 bg-gray-800">
+        <footer class="text-center py-6">
             <p class="text-gray-500">© 2024 Md. Al Mamun</p>
         </footer>
     </div>
@@ -170,6 +194,7 @@
         new Vue({
             el: '#app',
             data: {
+                heroText: '',
                 projects: [
                     {
                         name: "Online Course Management (SkillSyntax)",
@@ -210,6 +235,24 @@
                 skills: [
                     "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript", "PHP", "Python", "DSA", "Git", "MySQL", "React", "MongoDB", "Express", "Node.js"
                 ]
+            },
+            mounted() {
+                const text = 'Full-Stack Developer | Laravel | Vue.js | Android Enthusiast | Algorithms | DSA | Android Studio | React';
+                const phrases = text.split(' | ');
+                let index = 0;
+                const typingSpeed = 1000; // Adjust typing speed here (50ms per character)
+
+                const typeWriter = () => {
+                    if (index < phrases.length) {
+                        if (index !== 0)
+                            this.heroText += ' | ';
+                        this.heroText += phrases[index];
+                        index++;
+                        setTimeout(typeWriter, typingSpeed); // Recursive call to type next character
+                    }
+                };
+
+                typeWriter(); // Start the typing animation
             }
         });
     </script>
