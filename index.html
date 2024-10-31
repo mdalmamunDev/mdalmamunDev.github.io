@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Md. Al Mamun | Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 
@@ -14,46 +15,39 @@
     <div id="app">
         <!-- Header Section -->
         <header class="text-center py-10 bg-gray-800 relative">
-            <img src="Images/profile.png" alt="Profile Picture"
-                class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
+            <img src="images/profile.jpg" alt="Profile Picture" class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
             <h1 class="text-4xl font-bold mt-4">Md. Al Mamun</h1>
             <p class="text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
             <div class="mt-4">
-                <a href="https://github.com/mdalmamunDev" target="_blank"
-                    class="text-blue-400 hover:underline">GitHub</a> |
-                <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank"
-                    class="text-blue-400 hover:underline">LinkedIn</a>
+                <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
+                <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
+                <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
             </div>
         </header>
 
         <!-- About Me Section -->
-        <section
-            class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-            <!-- Profile Image -->
-            <img src="Images/profile.png" alt="Md. Al Mamun"
-                class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg md:mb-0">
+        <section class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+            <img src="images/profile-formal.png" alt="Md. Al Mamun" class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg md:mb-0">
 
-            <!-- Bio Information -->
             <div class="text-center md:text-left">
                 <h2 class="text-3xl font-semibold">About Me</h2>
                 <p class="mt-4 text-gray-300">
-                    Hello, I’m <span class="text-blue-400 font-semibold">Md. Al Mamun</span>, a passionate and motivated
-                    developer skilled in both web and mobile development.
-                    I specialize in using <span class="text-blue-400 font-semibold">Laravel</span> and <span
-                        class="text-blue-400 font-semibold">Vue.js</span> for backend and frontend solutions, while
-                    also focusing on <span class="text-blue-400 font-semibold">Android Studio</span> for mobile
-                    applications. I’m driven by a love for solving complex problems, collaborating with
-                    teams, and consistently learning new technologies. I pride myself on my quick learning abilities and
-                    enthusiasm for exploring innovative tech.
+                    Hello, I’m <span class="text-blue-400 font-semibold">Md. Al Mamun</span>, born on August 10, 2002, in Porsha, Naogaon.
+                    I am a passionate and motivated developer skilled in web and mobile development. With expertise in
+                    <span class="text-blue-400 font-semibold">Laravel</span> and <span class="text-blue-400 font-semibold">Vue.js</span>
+                    for backend and frontend solutions, as well as <span class="text-blue-400 font-semibold">Android Studio</span>
+                    for mobile applications and a basic level of <span class="text-blue-400 font-semibold">MERN Stack</span> knowledge,
+                    I focus on creating innovative and efficient applications. I am always eager to tackle complex problems and
+                    collaborate with teams. I pride myself on my quick learning abilities and enthusiasm for exploring new technologies.
                 </p>
                 <div class="mt-4">
-                    <a href="https://github.com/mdalmamunDev" target="_blank"
-                        class="text-blue-400 hover:underline">GitHub</a> |
-                    <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank"
-                        class="text-blue-400 hover:underline">LinkedIn</a>
+                    <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
+                    <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
+                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
                 </div>
             </div>
         </section>
+
 
 
         <!-- Projects Section -->
@@ -61,15 +55,72 @@
             <div class="max-w-5xl mx-auto">
                 <h2 class="text-3xl font-semibold text-center">Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                    <div v-for="project in projects" :key="project.name"
-                        class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-                        <img :src="project.image" alt="Project Image" class="w-full h-48 object-cover">
+                    <div v-for="project in projects" :key="project.name" class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                        <img :src="'images/projects/'+ (project.image ? project.image : 'def.png')" alt="Project Image" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold">{{ project.name }}</h3>
                             <p class="text-gray-300 mt-2">{{ project.description }}</p>
                             <p class="text-gray-400 text-sm mt-1">{{ project.duration }}</p>
-                            <a :href="project.link" target="_blank"
-                                class="mt-4 inline-block text-blue-400 hover:underline">View on GitHub</a>
+                            <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section -->
+        <section class="max-w-5xl mx-auto py-12 px-4">
+            <h2 class="text-3xl font-semibold text-center">Additional Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <!-- Education Column -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Education</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-500">2020 - Present</p>
+                            <h4 class="font-semibold">Diploma in Engineering(CST)</h4>
+                            <p class="text-gray-300">TMSS Institute of Science and ICT</p>
+                            <p class="text-gray-400">Gained practical knowledge in software development, programming languages, and system analysis.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">2018 - 2020</p>
+                            <h4 class="font-semibold">Secondary School Certificate(SSC)</h4>
+                            <p class="text-gray-300">Shariyala Islamia Dakhil Madrasha</p>
+                            <p class="text-gray-400">Achieved comprehensive education with a focus on mathematics and science, laying a strong foundation for further studies in engineering and technology.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experiences Column -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Experiences</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-500">06/2024 - Present</p>
+                            <h4 class="font-semibold">Intern on TMSS ICT</h4>
+                            <p class="text-gray-400">Completed an industry attachment at TMSS ICT, where I contributed to the design team on various projects, fostering innovative solutions and enhancing creative strategies.</p>
+
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">07/2024 - 11/2024</p>
+                            <h4 class="font-semibold">SkillSyntax: Project Manager</h4>
+                            <p class="text-gray-400">Project Lead & Developer for a comprehensive course management system application.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interests Column -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Interests</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Coding Challenges</p>
+                            <h4 class="font-semibold">Problem-Solving</h4>
+                            <p class="text-gray-400">Actively participating in coding challenges on platforms like LeetCode and HackerRank to sharpen my problem-solving skills and improve algorithmic thinking.</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">New Technologies</p>
+                            <h4 class="font-semibold">Exploration</h4>
+                            <p class="text-gray-400">Consistently staying updated with the latest trends in web and mobile development through online courses, tech blogs, and community forums.</p>
                         </div>
                     </div>
                 </div>
@@ -80,20 +131,32 @@
         <section class="max-w-3xl mx-auto py-12 text-center">
             <h2 class="text-3xl font-semibold">Technologies & Tools</h2>
             <div class="flex flex-wrap justify-center gap-4 mt-6">
-                <span v-for="skill in skills" :key="skill" class="px-4 py-2 bg-gray-700 rounded-full shadow">{{ skill
-                    }}</span>
+                <span v-for="skill in skills" :key="skill" class="px-4 py-2 bg-gray-700 rounded-full shadow">{{ skill }}</span>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="max-w-3xl mx-auto py-12 text-center">
-            <h2 class="text-3xl font-semibold">Get in Touch</h2>
-            <p class="mt-4 text-gray-300">Feel free to reach out via email or connect with me on LinkedIn!</p>
-            <div class="mt-6">
-                <p><a href="mailto:mamun.dev.pro@gmail.com"
-                        class="text-blue-400 hover:underline">mamun.dev.pro@gmail.com</a></p>
-                <p><a href="https://leetcode.com/mdalmamunDev/" class="text-blue-400 hover:underline">LeetCode
-                        Profile</a></p>
+        <section class="bg-gray-800 py-12">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="text-3xl font-semibold">Get in Touch</h2>
+                <p class="mt-4 text-gray-400">Feel free to reach out through social media!</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="mailto:mamun.dev.pro@gmail.com" title="Email" class="text-blue-400 hover:text-blue-600">
+                        <i class="fa-solid fa-envelope fa-2x"></i>
+                    </a>
+                    <a href="https://github.com/mdalmamunDev" title="Github" target="_blank" class="text-blue-400 hover:text-blue-600">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" title="Linkedin" target="_blank" class="text-blue-400 hover:text-blue-600">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="https://leetcode.com/u/madalmamun53/" title="LeetCode" target="_blank" class="text-blue-400 hover:text-blue-600">
+                        <i class="fab fa-leanpub fa-2x"></i>
+                    </a>
+                    <a href="https://www.facebook.com/mdalmamun.dev" title="Facebook" target="_blank" class="text-blue-400 hover:text-blue-600">
+                        <i class="fab fa-facebook fa-2x"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -112,48 +175,40 @@
                         name: "Online Course Management (SkillSyntax)",
                         description: "A complete course management system with course creation and enrollment.",
                         duration: "Collaborative Project",
-                        link: "https://github.com/mdalmamunDev/Online_Course_Management",
-                        image: "Images/profile.png"  // Replace with your actual project image URL
+                        link: "https://github.com/mad-programmers3/skill-syntax",
+                        image: "skill-syntax.png"
                     },
                     {
                         name: "FunTan",
                         description: "Product management system with modern UI.",
                         duration: "Laravel + Vue.js",
-                        link: "https://github.com/mdalmamunDev/FunTan",
-                        image: "https://via.placeholder.com/400x200"  // Replace with your actual project image URL
+                        link: "https://github.com/mdalmamunDev/fun-tan",
+                        image: ""
                     },
                     {
                         name: "Fashion Bazaar",
                         description: "E-commerce platform featuring user authentication and product management.",
                         duration: "Laravel, Vue.js, MySQL",
                         link: "https://github.com/mdalmamunDev/Fashion_Bazaar",
-                        image: "https://via.placeholder.com/400x200"  // Replace with your actual project image URL
+                        image: ""
                     },
                     {
-                        name: "TISI-AirCraft",
-                        description: "Aircraft management & simulation mobile app. Lead Developer.",
-                        duration: "Android Studio, Java",
-                        link: "https://github.com/mdalmamunDev/TISI-AirCraft",
-                        image: "https://via.placeholder.com/400x200"  // Replace with your actual project image URL
+                        name: "DreamDwell",
+                        description: "Hotel management app for managing bookings and services.",
+                        duration: "MERN Stack",
+                        link: "https://github.com/mdalmamunDev/DreamDwell",
+                        image: "dream-dwell.png"
                     },
                     {
-                        name: "AM Play",
-                        description: "Versatile music player app for Android.",
-                        duration: "05/2022 - 03/2024",
-                        link: "https://github.com/mdalmamunDev/AM-Play",
-                        image: "https://via.placeholder.com/400x200"  // Replace with your actual project image URL
-                    },
-                    {
-                        name: "Unit Converter",
-                        description: "Android app for unit conversions from length to temperature.",
-                        duration: "Android Studio, Java",
-                        link: "https://github.com/mdalmamunDev/Unit-Converter",
-                        image: "https://via.placeholder.com/400x200"  // Replace with your actual project image URL
+                        name: "ProgrammersVilla",
+                        description: "Platform for hiring and viewing programmers' details.",
+                        duration: "MERN Stack",
+                        link: "https://github.com/mdalmamunDev/ProgrammersVilla",
+                        image: "programmers-villa.png"
                     }
                 ],
                 skills: [
-                    "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript",
-                    "PHP", "Python", "DSA", "Git", "MySQL", "React"
+                    "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript", "PHP", "Python", "DSA", "Git", "MySQL", "React", "MongoDB", "Express", "Node.js"
                 ]
             }
         });
