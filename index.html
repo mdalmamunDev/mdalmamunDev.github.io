@@ -20,9 +20,9 @@
         <!-- Header Section -->
         <header class="text-center h-screen relative flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero-banner.jpg');">
             <!-- Navbar -->
-            <nav class="absolute top-0 left-0 w-full flex items-center justify-between p-5 text-white bg-transparent z-10">
-                <div class="text-2xl font-bold">MyPortfolio</div>
-                <ul class="flex space-x-4 text-lg">
+            <nav class="absolute top-0 left-0 w-full flex items-center justify-between py-5 px-3 md:px-5 text-white bg-transparent z-10">
+                <div class="text-lg md:text-2xl font-bold">MyPortfolio</div>
+                <ul class="flex space-x-4 text-sm md:text-lg">
                     <li><a href="#about" class="hover:underline">About</a></li>
                     <li><a href="#projects" class="hover:underline">Projects</a></li>
                     <li><a href="#contact" class="hover:underline">Contact</a></li>
@@ -33,16 +33,16 @@
             <div class="absolute inset-0 bg-black opacity-60"></div>
 
             <!-- Content -->
-            <div class="relative text-white text-xl md:text-2xl font-bold z-5">
+            <div class="relative text-white text-md md:text-2xl font-bold p-2 z-5">
                 <img src="images/profile.jpg" alt="Profile Picture" class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
-                <h1 class="text-4xl font-bold mt-4">Md. Al Mamun</h1>
-                <p class="text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
+                <h1 class="text-3xl md:text-4xl font-bold mt-4">Md. Al Mamun</h1>
+                <p class="text-sm md:text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
                 <div class="mt-4">
                     <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
                     <a href="https://www.linkedin.com/in/md-al-mamun-218b25243/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
                     <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
                 </div>
-                <p class="pt-10">{{ heroText }}</p>
+                <p class="pt-6 md:pt-10">{{ heroText }}</p>
             </div>
         </header>
 
@@ -202,6 +202,13 @@
                         duration: "Collaborative Project",
                         link: "https://github.com/mad-programmers3/skill-syntax",
                         image: "skill-syntax.png"
+                    },
+                    {
+                        name: "AM Play",
+                        description: "Music player with advance tagging system.",
+                        duration: "Android Studio + Java",
+                        link: "https://github.com/mdalmamunDev/fun-tan",
+                        image: ""
                     },
                     {
                         name: "FunTan",
