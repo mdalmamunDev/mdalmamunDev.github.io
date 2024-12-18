@@ -83,7 +83,8 @@
                             <h3 class="text-xl font-semibold">{{ project.name }}</h3>
                             <p class="text-gray-300 mt-2">{{ project.description }}</p>
                             <p class="text-gray-400 text-sm mt-1">{{ project.duration }}</p>
-                            <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">View on GitHub</a>
+                            <a :href="project.repo" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">GitHub</a>
+                            <a v-if="project.link" :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline"> | View</a>
                         </div>
                     </div>
                 </div>
@@ -197,45 +198,59 @@
                 heroText: '',
                 projects: [
                     {
+                        name: "AM Play Web",
+                        description: "Web based music player with advance tagging system.",
+                        duration: "Vue.js",
+                        repo: "https://github.com/mdalmamunDev/AM-Play-Web",
+                        link: "https://mdalmamundev.github.io/AM-Play-Web",
+                        image: "am-play-web.png"
+                    },
+                    {
                         name: "Online Course Management (SkillSyntax)",
                         description: "A complete course management system with course creation and enrollment.",
                         duration: "Collaborative Project",
-                        link: "https://github.com/mad-programmers3/skill-syntax",
+                        repo: "https://github.com/mad-programmers3/skill-syntax",
+                        link: "",
                         image: "skill-syntax.png"
                     },
                     {
                         name: "AM Play",
                         description: "Music player with advance tagging system.",
                         duration: "Android Studio + Java",
-                        link: "https://github.com/mdalmamunDev/fun-tan",
+                        repo: "https://github.com/mdalmamunDev/AM-Play",
+                        link: "",
                         image: ""
                     },
                     {
                         name: "FunTan",
                         description: "Product management system with modern UI.",
                         duration: "Laravel + Vue.js",
-                        link: "https://github.com/mdalmamunDev/fun-tan",
+                        repo: "https://github.com/mdalmamunDev/fun-tan",
+                        link: "",
                         image: ""
                     },
                     {
                         name: "Fashion Bazaar",
                         description: "E-commerce platform featuring user authentication and product management.",
                         duration: "Laravel, Vue.js, MySQL",
-                        link: "https://github.com/mdalmamunDev/Fashion_Bazaar",
+                        repo: "https://github.com/mdalmamunDev/Fashion_Bazaar",
+                        link: "",
                         image: ""
                     },
                     {
                         name: "DreamDwell",
                         description: "Hotel management app for managing bookings and services.",
                         duration: "MERN Stack",
-                        link: "https://github.com/mdalmamunDev/DreamDwell",
+                        repo: "https://github.com/mdalmamunDev/DreamDwell",
+                        link: "",
                         image: "dream-dwell.png"
                     },
                     {
                         name: "ProgrammersVilla",
                         description: "Platform for hiring and viewing programmers' details.",
                         duration: "MERN Stack",
-                        link: "https://github.com/mdalmamunDev/ProgrammersVilla",
+                        repo: "https://github.com/mdalmamunDev/ProgrammersVilla",
+                        link: "",
                         image: "programmers-villa.png"
                     }
                 ],
