@@ -306,7 +306,15 @@
                     do {
                         banner = Math.ceil(Math.random() * this.totalBanners);
                     } while (banner === this.currBanner); // Ensure the new banner is different
-                    this.currBanner = banner;
+
+                    // Preload the new banner image
+                    const newImage = new Image();
+                    newImage.src = `images/hero-banner/${banner}.jpg`;
+
+                    // Once the image is loaded, update the banner
+                    newImage.onload = () => {
+                        this.currBanner = banner;
+                    };
                 }
             },
         });
