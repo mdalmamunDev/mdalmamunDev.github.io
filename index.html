@@ -18,7 +18,9 @@
 
     <div id="app">
         <!-- Header Section -->
-        <header class="text-center h-screen relative flex items-center justify-center bg-cover bg-center" style="background-image: url('images/hero-banner.jpg');">
+        <header class="text-center h-screen relative flex items-center justify-center bg-cover bg-center" 
+            :style="{ backgroundImage: `url('images/hero-banner/${currBanner}.jpg')` }"
+        >
             <!-- Navbar -->
             <nav class="absolute top-0 left-0 w-full flex items-center justify-between py-5 px-3 md:px-5 text-white bg-transparent z-10">
                 <div class="text-lg md:text-2xl font-bold">MyPortfolio</div>
@@ -48,8 +50,8 @@
 
 
         <!-- About Me Section -->
-        <section id="about" class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-            <img src="images/profile-formal.png" alt="Md. Al Mamun" class="w-48 h-48 rounded-full border-4 border-blue-500 shadow-lg md:mb-0">
+        <section id="about" class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+            <img src="images/about-me.gif" alt="Md. Al Mamun" class="w-48 h-48 rounded-md border-4 border-blue-500 shadow-lg md:mb-0">
 
             <div class="text-center md:text-left">
                 <h2 class="text-3xl font-semibold">About Me</h2>
@@ -199,6 +201,9 @@
             el: '#app',
             data: {
                 heroText: '',
+                currBanner: 1,
+                totalBanners: 11,
+                bannerDelay: 10000,
                 TYPE_ANDROID: 1,
                 TYPE_WEB: 2,
                 skills: [
@@ -279,7 +284,6 @@
                 const phrases = text.split(' | ');
                 let index = 0;
                 const typingSpeed = 1000; // Adjust typing speed here (50ms per character)
-
                 const typeWriter = () => {
                     if (index < phrases.length) {
                         if (index !== 0)
@@ -289,9 +293,22 @@
                         setTimeout(typeWriter, typingSpeed); // Recursive call to type next character
                     }
                 };
-
                 typeWriter(); // Start the typing animation
-            }
+
+                // Random banner rotation
+                setInterval(this.setRandomBanner, this.bannerDelay);
+                this.setRandomBanner();
+            },
+
+            methods: {
+                setRandomBanner() {
+                    let banner;
+                    do {
+                        banner = Math.ceil(Math.random() * this.totalBanners);
+                    } while (banner === this.currBanner); // Ensure the new banner is different
+                    this.currBanner = banner;
+                }
+            },
         });
     </script>
 </body>
