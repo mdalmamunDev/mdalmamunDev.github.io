@@ -85,10 +85,19 @@
                             <h3 class="text-xl font-semibold">{{ project.name }}</h3>
                             <p class="text-gray-300 mt-2">{{ project.description }}</p>
                             <p class="text-gray-400 text-sm mt-1">{{ project.duration }}</p>
-                            <a :href="project.repo" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">GitHub</a>
-                            <template  v-if="project.link">
+                            <a :href="project.repo || '#'" target="_blank" class="mt-4 inline-block hover:underline" 
+                                :class="{
+                                    'text-blue-400': project.repo,
+                                    'text-gray-500 pointer-events-none': !project.repo
+                                }"
+                            >
+                                GitHub
+                            </a>
+                            <template v-if="project.link">
                                 |
-                                <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">{{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}</a>
+                                <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
+                                    {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
+                                </a>
                             </template>
                         </div>
                     </div>
@@ -239,6 +248,24 @@
                             link: "https://drive.google.com/uc?export=download&id=19VdIvCs7yYH-LvT_2qlvrVFJkkME2rRy",
                             type: this.TYPE_ANDROID,
                             image: ""
+                        },
+                        {
+                            name: "TISI AirCraft",
+                            description: "Aircraft game by me and team.",
+                            duration: "Android Studio + Java",
+                            repo: "https://github.com/mdalmamunDev/TISI-AirCraft",
+                            link: "https://drive.google.com/uc?export=download&id=13dVNr2aefurD9vzRKAwf0CM3iXdNHm7n",
+                            type: this.TYPE_ANDROID,
+                            image: "tisi-aircraft.jpg"
+                        },
+                        {
+                            name: "Contact",
+                            description: "Full functional Contact Android App(With All Basics: Add, Update, Delete, Making Call, SMS, Mail etc.)And of course with 👉Auto View Generator 🙂",
+                            duration: "Android Studio + Java",
+                            repo: "",
+                            link: "https://drive.google.com/uc?export=download&id=13IAIGPO6xSN66ipz_ey2Dt8HTKGhiKZd",
+                            type: this.TYPE_ANDROID,
+                            image: "contact.jpg"
                         },
                         {
                             name: "FunTan",
