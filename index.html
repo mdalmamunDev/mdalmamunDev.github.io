@@ -99,7 +99,7 @@
                             </template>
                             <template v-if="project.about">
                                 |
-                                <button @click="goProject(project.key)" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
+                                <a :href="'project.html?key='+project.key" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
                                     More
                                 </button>
                             </template>
@@ -271,10 +271,6 @@
                         this.currBanner = banner;
                     };
                 },
-                goProject(key) {
-                    console.log(key);
-                    location = 'project.html?key='+key;
-                }
             },
         });
     </script>

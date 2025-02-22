@@ -7,10 +7,24 @@ let projects = [
         description: "Music player with advance tagging system.",
         duration: "Android Studio + Java",
         repo: "https://github.com/mdalmamunDev/AM-Play",
-        link: "android-apps/AM Play - MIN_8.2024.02.26.apk",
+        link: "projects/am-play/AM Play - MIN_8.2024.02.26.apk",
         type: TYPE_ANDROID,
         image: "am-play.png",
-        about: true,
+        about:`
+            <p><strong>AM Play</strong> is a feature-rich and interactive Android music player app designed to provide users with the ultimate music experience. With cutting-edge features and a sleek, glassy UI, AM Play stands out as the go-to choice for music enthusiasts.</p>
+            <h2 class="mt-2 font-bold text-base">Features</h2>
+            <ul>
+                <li><strong>Most Advanced Tagging System:</strong> Organize your music library effortlessly with comprehensive tagging capabilities.</li>
+                <li><strong>Metadata Editor:</strong> Edit and enhance your music files' metadata with precision.</li>
+                <li><strong>Interactive, Beautiful, and Glassy UI:</strong> Enjoy a stunning visual design that supports dark mode.</li>
+                <li><strong>Search with Full Tagging Functionality:</strong> Find your music easily using advanced search options.</li>
+                <li><strong>Setting Controls:</strong> Customize your experience with a variety of settings.</li>
+                <li><strong>Play Bar Control:</strong> Manage playback conveniently from the play bar.</li>
+                <li><strong>And More:</strong> Explore additional features that enhance your music experience.</li>
+            </ul>
+        `,
+        version: 'MIN_8.2024.02.26',
+        tagline: 'Music player with advance tagging system',
     },
     {
         key: "skill-syntax",
@@ -48,7 +62,7 @@ let projects = [
         description: "Aircraft game by me and team.",
         duration: "Android Studio + Java",
         repo: "https://github.com/mdalmamunDev/TISI-AirCraft",
-        link: "android-apps/TISI AirCraft.apk",
+        link: "projects/tisi-aircraft/TISI AirCraft.apk",
         type: TYPE_ANDROID,
         image: "tisi-aircraft.jpg"
     },
@@ -58,7 +72,7 @@ let projects = [
         description: "Full functional Contact Android App(With All Basics: Add, Update, Delete, Making Call, SMS, Mail etc.)And of course with 👉Auto View Generator 🙂",
         duration: "Android Studio + Java",
         repo: "https://github.com/mdalmamunDev/contacts",
-        link: "android-apps/Contact.apk",
+        link: "projects/contact/Contact.apk",
         type: TYPE_ANDROID,
         image: "contact.jpg"
     },
@@ -88,7 +102,7 @@ let projects = [
         description: "Convert anything anytime 🙂.",
         duration: "Android Studio + Java",
         repo: "https://github.com/mdalmamunDev/Unit-Converter",
-        link: "android-apps/UnitConverter v3.x.apk",
+        link: "projects/unit-converter/UnitConverter v3.x.apk",
         type: TYPE_ANDROID,
         image: ""
     },
