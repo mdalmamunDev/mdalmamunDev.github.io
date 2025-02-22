@@ -77,8 +77,8 @@
             <div class="max-w-5xl mx-auto">
                 <h2 class="text-3xl font-semibold text-center">Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                    <div v-for="project in projects" :key="project.name" class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-                        <img :src="'images/projects/'+ (project.image ? project.image : 'def.png')" alt="Project Image" class="w-full h-48 object-cover">
+                    <div v-for="project in projects" :key="project.key" class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                        <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')" alt="Project Image" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold">{{ project.name }}</h3>
                             <p class="text-gray-300 mt-2">{{ project.description }}</p>
@@ -96,6 +96,12 @@
                                 <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
                                     {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
                                 </a>
+                            </template>
+                            <template v-if="project.about">
+                                |
+                                <button @click="goProject(project.key)" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
+                                    More
+                                </button>
                             </template>
                         </div>
                     </div>
@@ -206,6 +212,8 @@
         </footer>
     </div>
 
+
+    <script src="scripts/projects.js"></script>
     <script>
         new Vue({
             el: '#app',
@@ -214,116 +222,17 @@
                 currBanner: 1,
                 totalBanners: 11,
                 bannerDelay: 10000,
-                TYPE_ANDROID: 1,
-                TYPE_WEB: 2,
                 skills: [
                     "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript", "PHP", "Python", "DSA", "Git", "MySQL", "React", "MongoDB", "Express", "Node.js"
-                ]
+                ],
+
+
+                projects: projects,
+                TYPE_ANDROID: TYPE_ANDROID,
+                TYPE_WEB: TYPE_WEB,
             },
             computed: {
-                projects() {
-                    return [
-                        {
-                            name: "AM Play",
-                            description: "Music player with advance tagging system.",
-                            duration: "Android Studio + Java",
-                            repo: "https://github.com/mdalmamunDev/AM-Play",
-                            link: "android-apps/AM Play - MIN_8.2024.02.26.apk",
-                            type: this.TYPE_ANDROID,
-                            image: "am-play.png"
-                        },
-                        {
-                            name: "Online Course Management (SkillSyntax)",
-                            description: "A complete course management system with course creation and enrollment.",
-                            duration: "Collaborative Project",
-                            repo: "https://github.com/mad-programmers3/skill-syntax",
-                            link: "",
-                            type: this.TYPE_WEB,
-                            image: "skill-syntax.png"
-                        },
-                        {
-                            name: "AM Play Web",
-                            description: "Web based music player with advance tagging system.",
-                            duration: "Vue.js",
-                            repo: "https://github.com/mdalmamunDev/AM-Play-Web",
-                            link: "https://mdalmamundev.github.io/AM-Play-Web",
-                            type: this.TYPE_WEB,
-                            image: "am-play-web.png"
-                        },
-                        {
-                            name: "Time Bridge",
-                            description: "Time Bridge is a Vue.js app that calculates time differences with live updates, preset bookmarks, and a responsive, animated Tailwind CSS-based interface for seamless user interaction.",
-                            duration: "Vue.js",
-                            repo: "https://github.com/mdalmamunDev/TimeBridge",
-                            link: "https://mdalmamundev.github.io/TimeBridge",
-                            type: this.TYPE_WEB,
-                            image: "time-bridge.png"
-                        },
-                        {
-                            name: "TISI AirCraft",
-                            description: "Aircraft game by me and team.",
-                            duration: "Android Studio + Java",
-                            repo: "https://github.com/mdalmamunDev/TISI-AirCraft",
-                            link: "android-apps/TISI AirCraft.apk",
-                            type: this.TYPE_ANDROID,
-                            image: "tisi-aircraft.jpg"
-                        },
-                        {
-                            name: "Contact",
-                            description: "Full functional Contact Android App(With All Basics: Add, Update, Delete, Making Call, SMS, Mail etc.)And of course with 👉Auto View Generator 🙂",
-                            duration: "Android Studio + Java",
-                            repo: "https://github.com/mdalmamunDev/contacts",
-                            link: "android-apps/Contact.apk",
-                            type: this.TYPE_ANDROID,
-                            image: "contact.jpg"
-                        },
-                        {
-                            name: "FunTan",
-                            description: "Product management system with modern UI.",
-                            duration: "Laravel + Vue.js",
-                            repo: "https://github.com/mdalmamunDev/fun-tan",
-                            link: "",
-                            type: this.TYPE_WEB,
-                            image: "fan-tan.png"
-                        },
-                        {
-                            name: "Fashion Bazaar",
-                            description: "E-commerce platform featuring user authentication and product management.",
-                            duration: "Laravel, Vue.js, MySQL",
-                            repo: "https://github.com/mdalmamunDev/Fashion_Bazaar",
-                            link: "",
-                            type: this.TYPE_WEB,
-                            image: "fashion-bazaar.png"
-                        },
-                        {
-                            name: "Unit-Converter",
-                            description: "Conver anything anytime 🙂.",
-                            duration: "Android Studio + Java",
-                            repo: "https://github.com/mdalmamunDev/Unit-Converter",
-                            link: "android-apps/UnitConverter v3.x.apk",
-                            type: this.TYPE_ANDROID,
-                            image: ""
-                        },
-                        {
-                            name: "DreamDwell",
-                            description: "Hotel management app for managing bookings and services.",
-                            duration: "MERN Stack",
-                            repo: "https://github.com/mdalmamunDev/DreamDwell",
-                            link: "",
-                            type: this.TYPE_WEB,
-                            image: "dream-dwell.png"
-                        },
-                        {
-                            name: "ProgrammersVilla",
-                            description: "Platform for hiring and viewing programmers' details.",
-                            duration: "MERN Stack",
-                            repo: "https://github.com/mdalmamunDev/ProgrammersVilla",
-                            link: "",
-                            type: this.TYPE_WEB,
-                            image: "programmers-villa.png"
-                        }
-                    ];
-                }
+                //
             },
             mounted() {
                 const text = 'Full-Stack Developer | Laravel | Vue.js | Android Enthusiast | Algorithms | DSA | Android Studio | React';
@@ -361,6 +270,10 @@
                     newImage.onload = () => {
                         this.currBanner = banner;
                     };
+                },
+                goProject(key) {
+                    console.log(key);
+                    location = 'project.html?key='+key;
                 }
             },
         });
