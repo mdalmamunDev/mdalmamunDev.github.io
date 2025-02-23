@@ -9,6 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <style>
+        header {
+            transition: transform 0.3s ease-in-out;
+        }
         section {
             margin: 40px 0;
         }
@@ -18,124 +21,99 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <!-- Header -->
-    <header class="bg-gray-800 py-4">
-        <div class="max-w-5xl mx-auto flex justify-between items-center px-6">
-            <h1 class="text-xl font-bold">Project</h1>
-            <nav>
-                <a href="#" class="text-gray-300 hover:text-white px-3">Home</a>
-                <a href="#" class="text-gray-300 hover:text-white px-3">About</a>
-                <a href="#" class="text-gray-300 hover:text-white px-3">Contact</a>
-            </nav>
-        </div>
-    </header>
+    <div id="app">
+        <!-- Header -->
+        <header id="navbar" class="bg-blue-500 py-4 fixed top-0 w-full transition-transform duration-300">
+            <div class="max-w-5xl mx-auto flex justify-between items-center px-6">
+                <h1 class="text-xl font-bold">{{ project.name }}</h1>
+                <nav>
+                    <a href="#about" class="text-gray-300 hover:text-white px-3">About</a>
+                    <a href="#faq" class="text-gray-300 hover:text-white px-3">FAQ</a>
+                    <a href="#info" class="text-gray-300 hover:text-white px-3">INFO</a>
+                </nav>
+            </div>
+        </header>
 
-    <main id="app" class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg mt-6">
-        <template v-if="project">
-            <section class="divider pb-6">
-                <!-- VLC Logo and Title -->
-                <div class="flex items-center space-x-4">
-                    <img :src="`projects/${project.key}/icon.png`" alt="VLC Logo" class="w-12 h-12">
-                    <div>
-                        <h2 class="text-xl font-extrabold">{{ project.name }}</h2>
-                        <p class="text-gray-400">{{ project.version }}</p>
-                        <p v-if="false" class="text-blue-400">By Md. Al Mamun</p>
-                    </div>
-                </div>
-
-                <!-- Tagline -->
-                <p class="mt-4 text-base font-semibold">{{ project.tagline }}</p>
-
-                <!-- Download Button -->
-                <div class="mt-4">
-                    <a :href="project.link" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">
-                        <span>Get the latest version</span>
-                        <span class="text-sm text-gray-300">{{ project.version }}</span>
-                        <i class="fa-solid fa-download"></i>
-                    </a>
-                </div>
-
-                <!-- Older Versions -->
-                <div v-if="false" class="mt-3 text-center">
-                    <button class="w-full border border-gray-400 text-gray-300 py-2 rounded-lg hover:bg-gray-700">OLDER VERSIONS</button>
-                </div>
-            </section>
-
-            <!-- Screenshots -->
-            <section class="pb-6 divider">
-                <h2 class="text-xl font-bold mb-4">Screenshots</h2>
-                <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
-                    <img src="https://placehold.co/300x400" class="h-36 rounded-md">
-                    <img src="https://placehold.co/300x400" class="h-36 rounded-md">
-                    <img src="https://placehold.co/300x400" class="h-36 rounded-md">
-                    <img src="https://placehold.co/300x400" class="h-36 rounded-md">
-                    <img src="https://placehold.co/300x100" class="h-36 rounded-md">
-                </div>
-            </section>
-
-            <!-- About -->
-            <section class="pb-6 divider">
-                <h2 class="text-xl font-bold mb-4">About</h2>
-                <div class="text-gray-300 text-sm" v-html="project.about"></div>
-            </section>
-
-            <!-- Requirements and FAQ -->
-            <section>
-                <h2 class="text-xl font-bold mb-4">Requirements <span class="text-gray-400">[Latest version]</span></h2>
-                <p class="text-gray-300 text-sm">Android 7 or higher required</p>
-
-                <h2 class="text-xl font-bold mb-4 mt-8">Frequently Asked Questions</h2>
-                <div class="space-y-6 text-sm">
-                    <div>
-                        <h4 class="font-semibold">Is VLC free?</h3>
-                        <p class="text-gray-300">VLC is a free media player for Android. The program is open source and offers all its features to users free of charge. It's also compatible with any video or audio format.</p>
+        <main class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg pt-20">
+            <template v-if="project">
+                <section class="divider pb-6">
+                    <!-- VLC Logo and Title -->
+                    <div class="flex items-center space-x-4">
+                        <img :src="`projects/${project.key}/icon.png`" alt="VLC Logo" class="w-12 h-12">
+                        <div>
+                            <h2 class="text-xl font-extrabold">{{ project.name }}</h2>
+                            <p class="text-gray-400">{{ project.version }}</p>
+                            <p v-if="false" class="text-blue-400">By Md. Al Mamun</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <h4 class="font-semibold">Is VLC blocked in any country?</h3>
-                        <p class="text-gray-300">The VLC website has been blocked in India since March 2022 by order of the country's government. The exact reason for this is not known. Luckily, you can download the VLC APK from websites like Uptodown and continue using it without a problem.</p>
+                    <!-- Tagline -->
+                    <p class="mt-4 text-base font-semibold">{{ project.tagline }}</p>
+
+                    <!-- Download Button -->
+                    <div class="mt-4">
+                        <a :href="project.link" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">
+                            <span>Get the latest version</span>
+                            <span class="text-sm text-gray-300">{{ project.version }}</span>
+                            <i class="fa-solid fa-download"></i>
+                        </a>
                     </div>
 
-                    <div>
-                        <h4 class="font-semibold">Can VLC download movies?</h3>
-                        <p class="text-gray-300">No, VLC cannot download movies. VLC is a simple player for multimedia content saved on your device. That said, you can download subtitles for the content you have saved.</p>
+                    <!-- Older Versions -->
+                    <div class="mt-3 text-center">
+                        <a :href="project.repo" target="_blank" class="w-full border border-gray-400 text-gray-300 hover:bg-gray-700 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">Checkout codes via GitHub
+                            <i class="fa-brands fa-github ms-2"></i>
+                        </a>
                     </div>
+                </section>
 
-                    <div>
-                        <h4 class="font-semibold">Is VLC the best player for Android?</h3>
-                        <p class="text-gray-300">VLC is one of the best movie, series, and video players for Android. It competes with apps such as MX Player by offering tons of options, versatility, and great performance. Downloading the VLC APK is a sure bet.</p>
+                <!-- Screenshots -->
+                <section class="pb-6 divider">
+                    <h2 class="text-xl font-bold mb-4">Screenshots</h2>
+                    <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
+                        <img v-for="att in project.atts" :src="`projects/${project.key}/${att}`" class="h-80 rounded-md">
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Information about VLC -->
-            <section class="pt-6">
-                <h2 class="text-xl font-bold mb-4">Information about VLC 3.6.3</h2>
-                <div class="text-gray-300 space-y-2 text-sm">
-                    <div>
-                        <span class="font-semibold">Package Name: </span><span class="text-gray-400">org.videolan.vlc</span>
-                    </div>
-                    <div>
-                        <span class="font-semibold">License: </span><span class="text-gray-400">Free</span>
-                    </div>
-                    <div>
-                        <span class="font-semibold">Op. System: </span><span class="text-gray-400">Android</span>
-                    </div>
-                </div>
-            </section>
-        </template>
-    </main>
+                <!-- About -->
+                <section class="pb-6 divider" id="about">
+                    <h2 class="text-xl font-bold mb-4">About</h2>
+                    <div class="text-gray-300 text-sm" v-html="project.about"></div>
+                </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 py-4 mt-6">
-        <div class="max-w-5xl mx-auto flex justify-center items-center px-6">
-            <p class="text-gray-400">&copy; 2025 Md. Al Mamun | AM Play</p>
-            <!-- <nav>
-                <a href="#" class="text-gray-300 hover:text-white px-3">Privacy Policy</a>
-                <a href="#" class="text-gray-300 hover:text-white px-3">Terms of Service</a>
-            </nav> -->
-        </div>
-    </footer>
+                <!-- Requirements and FAQ -->
+                <section id="faq">
+                    <h2 class="text-xl font-bold mb-4">Requirements <span class="text-gray-400">[Latest version]</span></h2>
+                    <p class="text-gray-300 text-sm">{{ project.require }}</p>
+
+                    <h2 class="text-xl font-bold mb-4 mt-8">Frequently Asked Questions</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 text-sm">
+                        <div v-for="(q, index) in project.faq" :key="index" class="p-2">
+                            <h3 class="font-semibold">{{ q.qs }}</h3>
+                            <p class="text-gray-300">{{ q.ans }}</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Information about VLC -->
+                <section class="pt-6" id="info">
+                    <h2 class="text-xl font-bold mb-4">Information About {{ project.name }} {{ project.version }}</h2>
+                    <div class="text-gray-300 space-y-2 text-sm">
+                        <div v-for="(info, index) in project.info" :key="index">
+                            <span class="font-semibold">{{ info.name }}: </span><span class="text-gray-400">{{ info.value }}</span>
+                        </div>
+                    </div>
+                </section>
+            </template>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-blue-500 py-4">
+            <div class="max-w-5xl mx-auto flex justify-center items-center px-6">
+                <p class="text-gray-300">&copy; {{ new Date().getFullYear() }} Md. Al Mamun | {{ project.name }}</p>
+            </div>
+        </footer>
+    </div>
 
 
     <script src="scripts/projects.js"></script>
@@ -162,6 +140,20 @@
                 //
             },
         });
+    </script>
+    <script>
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.getElementById("navbar");
+
+        window.onscroll = function () {
+            let currentScrollPos = window.pageYOffset;
+            if (prevScrollPos > currentScrollPos) {
+                navbar.style.transform = "translateY(0)"; // Show Navbar
+            } else {
+                navbar.style.transform = "translateY(-100%)"; // Hide Navbar
+            }
+            prevScrollPos = currentScrollPos;
+        };
     </script>
 </body>
 </html>
