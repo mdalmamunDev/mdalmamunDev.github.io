@@ -1,0 +1,29 @@
+header {
+    transition: transform 0.3s ease-in-out;
+}
+section {
+    margin: 40px 0;
+}
+.divider {
+    border-bottom: 1px solid #4B5563;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.wave {
+    animation: wave 2s ease-in-out infinite;
+}

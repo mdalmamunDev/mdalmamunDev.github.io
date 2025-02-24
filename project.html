@@ -8,37 +8,7 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <style>
-        header {
-            transition: transform 0.3s ease-in-out;
-        }
-        section {
-            margin: 40px 0;
-        }
-        .divider {
-            border-bottom: 1px solid #4B5563;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-            100% { transform: translateX(0); }
-        }
-
-        .wave {
-            animation: wave 2s ease-in-out infinite;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/project.css">
 </head>
 <body class="bg-gray-900 text-white">
     <div id="app">
@@ -96,9 +66,21 @@
                     <section class="pb-6 divider">
                         <h2 class="text-xl font-bold mb-4">Screenshots</h2>
                         <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
-                            <img v-for="att in project.atts" :src="`projects/${project.key}/${att}`" class="h-80 rounded-md">
+                            <template v-for="att in project.atts">
+                                <img :src="`projects/${project.key}/${att}`" class="h-80 rounded-md cursor-zoom-in mb-3" @click="openModal(`projects/${project.key}/${att}`)">
+                            </template>
                         </div>
                     </section>
+                
+                    <!-- Modal -->
+                   <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                       <div class="p-4 rounded-lg relative">
+                           <span @click="closeModal" class="absolute top-5 right-5 h-8 w-8 flex items-center justify-center cursor-pointer text-gray-100 bg-black bg-opacity-50 hover:bg-opacity-40 backdrop-blur-lg rounded-full">
+                                <i class="fa fa-times"></i>
+                           </span>
+                           <img :src="selectedImage" alt="Selected Screenshot" class="max-w-fit max-h-screen">
+                       </div>
+                   </div>
 
                     <!-- About -->
                     <section class="pb-6 divider" id="about">
@@ -183,6 +165,8 @@
             data: {
                 project: null,
                 loaded: false,
+                showModal: false,
+                selectedImage: '',
             },
             computed: {
                 //
@@ -193,15 +177,23 @@
                 this.project = projects.find(p => p.key === this.projectKey);
 
                 // set title
-                if(this.project) document.title = this.project.name + ' | Md. Al Mamun';
+                if(this.project) document.title = 'Md. Al Mamun | ' + this.project.name;
                 
                 this.loaded = true;
             },
 
             methods: {
+                openModal(image) {
+                    this.selectedImage = image;
+                    this.showModal = true;
+                },
+                closeModal() {
+                    this.showModal = false;
+                    this.selectedImage = '';
+                },
                 back() {
                     history.back();
-                }
+                },
             },
         });
     </script>
