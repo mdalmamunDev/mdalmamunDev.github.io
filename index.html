@@ -93,15 +93,15 @@
                             </a>
                             <template v-if="project.link">
                                 |
-                                <a :href="project.link" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
+                                <a :href="project.link" class="mt-4 inline-block text-blue-400 hover:underline">
                                     {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
                                 </a>
                             </template>
                             <template v-if="project.about">
                                 |
-                                <a :href="'project.html?key='+project.key" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline">
+                                <a :href="'project.html?key='+project.key" class="mt-4 inline-block text-blue-400 hover:underline">
                                     More
-                                </button>
+                                </a>
                             </template>
                         </div>
                     </div>

@@ -18,101 +18,161 @@
         .divider {
             border-bottom: 1px solid #4B5563;
         }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .wave {
+            animation: wave 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
     <div id="app">
-        <!-- Header -->
-        <header id="navbar" class="bg-blue-500 py-4 fixed top-0 w-full transition-transform duration-300">
-            <div class="max-w-5xl mx-auto flex justify-between items-center px-6">
-                <h1 class="text-xl font-bold">{{ project.name }}</h1>
-                <nav>
-                    <a href="#about" class="text-gray-300 hover:text-white px-3">About</a>
-                    <a href="#faq" class="text-gray-300 hover:text-white px-3">FAQ</a>
-                    <a href="#info" class="text-gray-300 hover:text-white px-3">INFO</a>
-                </nav>
-            </div>
-        </header>
-
-        <main class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg pt-20">
+        <template v-if="loaded">
             <template v-if="project">
-                <section class="divider pb-6">
-                    <!-- VLC Logo and Title -->
-                    <div class="flex items-center space-x-4">
-                        <img :src="`projects/${project.key}/icon.png`" alt="VLC Logo" class="w-12 h-12">
-                        <div>
-                            <h2 class="text-xl font-extrabold">{{ project.name }}</h2>
-                            <p class="text-gray-400">{{ project.version }}</p>
-                            <p v-if="false" class="text-blue-400">By Md. Al Mamun</p>
+                <!-- Header -->
+                <header id="navbar" class="bg-blue-500 py-4 fixed top-0 w-full transition-transform duration-300">
+                    <div class="max-w-5xl mx-auto flex justify-between items-center px-6">
+                        <div class="text-center">
+                            <a href="/" class="text-xl font-bold" title="Back to portfolio home"><i class="fas fa-home"></i></a>
+                            <i class="fa-solid fa-angles-right text-blue-200"></i>
+                            <a href="#top" class="text-xl font-bold">{{ project.name }}</a>
                         </div>
+                        <nav>
+                            <a href="#about" class="text-blue-100 hover:text-white px-3">About</a>
+                            <a href="#faq" class="text-blue-100 hover:text-white px-3">FAQ</a>
+                            <a href="#info" class="text-blue-100 hover:text-white px-3">Info</a>
+                        </nav>
                     </div>
+                </header>
 
-                    <!-- Tagline -->
-                    <p class="mt-4 text-base font-semibold">{{ project.tagline }}</p>
-
-                    <!-- Download Button -->
-                    <div class="mt-4">
-                        <a :href="project.link" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">
-                            <span>Get the latest version</span>
-                            <span class="text-sm text-gray-300">{{ project.version }}</span>
-                            <i class="fa-solid fa-download"></i>
-                        </a>
-                    </div>
-
-                    <!-- Older Versions -->
-                    <div class="mt-3 text-center">
-                        <a :href="project.repo" target="_blank" class="w-full border border-gray-400 text-gray-300 hover:bg-gray-700 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">Checkout codes via GitHub
-                            <i class="fa-brands fa-github ms-2"></i>
-                        </a>
-                    </div>
-                </section>
-
-                <!-- Screenshots -->
-                <section class="pb-6 divider">
-                    <h2 class="text-xl font-bold mb-4">Screenshots</h2>
-                    <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
-                        <img v-for="att in project.atts" :src="`projects/${project.key}/${att}`" class="h-80 rounded-md">
-                    </div>
-                </section>
-
-                <!-- About -->
-                <section class="pb-6 divider" id="about">
-                    <h2 class="text-xl font-bold mb-4">About</h2>
-                    <div class="text-gray-300 text-sm" v-html="project.about"></div>
-                </section>
-
-                <!-- Requirements and FAQ -->
-                <section id="faq">
-                    <h2 class="text-xl font-bold mb-4">Requirements <span class="text-gray-400">[Latest version]</span></h2>
-                    <p class="text-gray-300 text-sm">{{ project.require }}</p>
-
-                    <h2 class="text-xl font-bold mb-4 mt-8">Frequently Asked Questions</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 text-sm">
-                        <div v-for="(q, index) in project.faq" :key="index" class="p-2">
-                            <h3 class="font-semibold">{{ q.qs }}</h3>
-                            <p class="text-gray-300">{{ q.ans }}</p>
+                <main class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg pt-20">
+                    <section id="top" class="divider pb-6">
+                        <!-- Logo and Title -->
+                        <div class="flex items-center space-x-4">
+                            <img :src="`projects/${project.key}/icon.png`" alt="Logo" class="w-12 h-12">
+                            <div>
+                                <h2 class="text-xl font-extrabold">{{ project.name }}</h2>
+                                <p class="text-gray-400">{{ project.version }}</p>
+                                <p v-if="false" class="text-blue-400">By Md. Al Mamun</p>
+                            </div>
                         </div>
-                    </div>
-                </section>
 
-                <!-- Information about VLC -->
-                <section class="pt-6" id="info">
-                    <h2 class="text-xl font-bold mb-4">Information About {{ project.name }} {{ project.version }}</h2>
-                    <div class="text-gray-300 space-y-2 text-sm">
-                        <div v-for="(info, index) in project.info" :key="index">
-                            <span class="font-semibold">{{ info.name }}: </span><span class="text-gray-400">{{ info.value }}</span>
+                        <!-- Tagline -->
+                        <p class="mt-4 text-base font-semibold">{{ project.tagline }}</p>
+
+                        <!-- Download Button -->
+                        <div class="mt-4">
+                            <a :href="project.link" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">
+                                <span>Get the latest version</span>
+                                <span class="text-sm text-gray-300">{{ project.version }}</span>
+                                <i class="fa-solid fa-download"></i>
+                            </a>
                         </div>
+
+                        <!-- Older Versions -->
+                        <div class="mt-3 text-center">
+                            <a :href="project.repo" target="_blank" class="w-full border border-gray-400 text-gray-300 hover:bg-gray-700 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">Checkout codes via GitHub
+                                <i class="fa-brands fa-github ms-2"></i>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Screenshots -->
+                    <section class="pb-6 divider">
+                        <h2 class="text-xl font-bold mb-4">Screenshots</h2>
+                        <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
+                            <img v-for="att in project.atts" :src="`projects/${project.key}/${att}`" class="h-80 rounded-md">
+                        </div>
+                    </section>
+
+                    <!-- About -->
+                    <section class="pb-6 divider" id="about">
+                        <h2 class="text-xl font-bold mb-4">About</h2>
+                        <div class="text-gray-300 text-sm" v-html="project.about"></div>
+                    </section>
+
+                    <!-- Requirements and FAQ -->
+                    <section id="faq">
+                        <h2 class="text-xl font-bold mb-4">Requirements <span class="text-gray-400">[Latest version]</span></h2>
+                        <p class="text-gray-300 text-sm">{{ project.require }}</p>
+
+                        <h2 class="text-xl font-bold mb-4 mt-8">Frequently Asked Questions</h2>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 text-sm">
+                            <div v-for="(q, index) in project.faq" :key="index">
+                                <h3 class="font-semibold mb-1">{{ q.qs }}</h3>
+                                <p class="text-gray-300">{{ q.ans }}</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Information -->
+                    <section class="pt-6" id="info">
+                        <h2 class="text-xl font-bold mb-4">Information About {{ project.name }} {{ project.version }}</h2>
+                        <div class="text-gray-300 space-y-2 text-sm">
+                            <div v-for="(info, index) in project.info" :key="index">
+                                <span class="font-semibold">{{ info.name }}: </span><span class="text-gray-400">{{ info.value }}</span>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Footer -->
+                <footer class="bg-blue-500 py-4">
+                    <div class="max-w-5xl mx-auto flex justify-center items-center px-6">
+                        <p class="text-gray-300">&copy; {{ new Date().getFullYear() }} Md. Al Mamun | {{ project.name }}</p>
                     </div>
-                </section>
+                </footer>
             </template>
-        </main>
 
-        <!-- Footer -->
-        <footer class="bg-blue-500 py-4">
-            <div class="max-w-5xl mx-auto flex justify-center items-center px-6">
-                <p class="text-gray-300">&copy; {{ new Date().getFullYear() }} Md. Al Mamun | {{ project.name }}</p>
+            <div v-else class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 relative overflow-hidden">
+
+                <!-- Animated Background Waves -->
+                <div class="absolute top-0 left-0 w-full h-64 bg-red-600 opacity-10 blur-2xl transform -rotate-6"></div>
+                <div class="absolute bottom-0 right-0 w-full h-64 bg-red-400 opacity-10 blur-2xl transform rotate-6"></div>
+            
+                <div class="relative z-10 text-center p-8 bg-white shadow-2xl rounded-lg max-w-lg">
+                    <!-- Floating Warning Icon -->
+                    <div class="floating inline-block p-4 bg-red-600 text-white rounded-full shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M4.93 4.93a10 10 0 0114.14 0M4.93 19.07a10 10 0 0014.14 0M12 3v1m0 16v1m8-8h1M3 12h1"></path>
+                        </svg>
+                    </div>
+            
+                    <h1 class="mt-6 text-4xl font-extrabold text-gray-900 wave">Oops! Something Went Wrong</h1>
+                    <p class="mt-2 text-gray-600">An unexpected error occurred. Try refreshing the page or coming back later.</p>
+            
+                    <div class="mt-6">
+                        <button @click="back" class="px-6 py-3 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-700 transition-all transform hover:scale-105">
+                            Go Back
+                        </button>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </template>
+        <div v-else class="text-center min-h-screen flex items-center justify-center">
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-20 h-20 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <h2 class="sr-onl mt-3 text-3xl">Loading...</span>
+            </div>
+        </div>
     </div>
 
 
@@ -122,6 +182,7 @@
             el: '#app',
             data: {
                 project: null,
+                loaded: false,
             },
             computed: {
                 //
@@ -132,12 +193,15 @@
                 this.project = projects.find(p => p.key === this.projectKey);
 
                 // set title
-                document.title = this.project.name + ' | Md. Al Mamun';
-                console.log(this.project);
+                if(this.project) document.title = this.project.name + ' | Md. Al Mamun';
+                
+                this.loaded = true;
             },
 
             methods: {
-                //
+                back() {
+                    history.back();
+                }
             },
         });
     </script>
