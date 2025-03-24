@@ -4,7 +4,7 @@ let projects = [
     {
         key: "am-play",
         name: "AM Play",
-        description: "Music player with advance tagging system.",
+        description: "AM Play is a feature-rich and interactive Android music player app designed to provide users with the ultimate music experience.",
         duration: "Android Studio + Java",
         repo: "https://github.com/mdalmamunDev/AM-Play",
         link: "projects/am-play/AM Play - MIN_8.2024.02.26.apk",
@@ -76,6 +76,15 @@ let projects = [
             { name: 'Music Playback', value: 'MediaPlayer API' },
             { name: 'UI & UX', value: 'RecyclerView, Glassy UI Effect, Dark Mode/AppCompat DayNight theme' },
         ],
+    },
+    {
+        key: "file-manager",
+        name: "File Manager",
+        description: "A full-stack file management application built with the MERN stack (MongoDB, Express.js, React.js, and Node.js). It allows users to upload, download, and organize files efficiently.",
+        duration: "MERN Stack",
+        repo: "https://github.com/mdalmamunDev/file-management-mern",
+        type: TYPE_WEB,
+        image: "file-manager.png"
     },
     {
         key: "skill-syntax",
