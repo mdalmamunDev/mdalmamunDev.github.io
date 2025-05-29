@@ -211,5 +211,21 @@
             prevScrollPos = currentScrollPos;
         };
     </script>
+
+    <!-- screenshots scroll on mouse scroll -->
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const screenshotContainer = document.querySelector("#app .divider + section .flex.overflow-x-auto");
+
+            if (screenshotContainer) {
+                screenshotContainer.addEventListener("wheel", function (event) {
+                    if (event.deltaY !== 0) {
+                        event.preventDefault();
+                        screenshotContainer.scrollLeft += event.deltaY;
+                    }
+                }, { passive: false });
+            }
+        });
+    </script>
 </body>
 </html>

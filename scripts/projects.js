@@ -78,6 +78,65 @@ let projects = [
         ],
     },
     {
+        key: "auto-revive",
+        name: "Auto Revive",
+        description: "Auto Revive is a multi-role mobile app platform that connects customers with mechanics and tow truck drivers, with a powerful admin dashboard to monitor and manage all activity in real-time.",
+        duration: "MERN Stack + Flutter",
+        // repo: "https://github.com/mdalmamunDev/file-management-mern",
+        link: "projects/auto-revive/AutoRevive-v1.apk",
+        type: TYPE_ANDROID,
+        image: "auto-revive.png",
+        about: `
+            <p><strong>Auto Revive</strong> is a smart car assistance mobile platform with four user roles: Customer, Mechanic, Tow Truck Driver, and Admin. Customers can easily request help from verified professionals, while the admin dashboard ensures seamless service monitoring and management.</p>
+            <h2 class="mt-3 font-bold text-base text-gray-200">Key Features</h2>
+            <ul>
+                <li class="mt-1"><strong class="text-gray-200">Multi-Role Access:</strong> Four separate roles with unique access and functionality — customer, mechanic, tow truck, and admin.</li>
+                <li class="mt-1"><strong class="text-gray-200">Service Requests:</strong> Customers can request roadside assistance or towing directly from their phone.</li>
+                <li class="mt-1"><strong class="text-gray-200">Real-Time Tracking:</strong> Track the location and progress of requested services.</li>
+                <li class="mt-1"><strong class="text-gray-200">Admin Dashboard:</strong> Manage users, payments, and monitor platform activity through a web-based admin panel.</li>
+                <li class="mt-1"><strong class="text-gray-200">Secure Payments:</strong> Integrated payment gateway for secure transactions and refunds.</li>
+                <li class="mt-1"><strong class="text-gray-200">Notifications & Status Updates:</strong> Keep users informed with real-time updates and alerts.</li>
+            </ul>
+        `,
+        version: 'v1.0.0',
+        tagline: 'All-in-one car service platform with real-time support',
+        atts: ['auto-revive.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png'],
+        require: 'Android 8 or higher required',
+        faq: [
+            {
+                qs: "What roles are supported in Auto Revive?",
+                ans: "Auto Revive supports four roles: Customer, Mechanic, Tow Truck Driver, and Admin — each with dedicated features and responsibilities."
+            },
+            {
+                qs: "Is Auto Revive available for free?",
+                ans: "Yes, Auto Revive is free to use for customers. Certain features for mechanics or tow providers may require verification or approval by admin."
+            },
+            {
+                qs: "Can I track my service provider?",
+                ans: "Yes, real-time tracking is available once your request is accepted. You can view the current location of your mechanic or tow truck."
+            },
+            {
+                qs: "How can admins manage users?",
+                ans: "Admins have full control via a web dashboard — allowing them to activate, deactivate users, issue refunds, and monitor platform activity."
+            },
+            {
+                qs: "Is there any support for payment refund?",
+                ans: "Yes, refunds can be processed manually by the admin from the dashboard based on service issues or cancellations."
+            },
+            {
+                qs: "Do service providers get notified of new jobs?",
+                ans: "Yes, mechanics and tow trucks receive real-time notifications for incoming service requests, including location and customer details."
+            }
+        ],
+        info: [
+            { name: 'Frontend', value: 'Flutter (Cross-platform mobile app)' },
+            { name: 'Backend', value: 'Node.js, Express.js, MongoDB (MERN Stack)' },
+            { name: 'Admin Panel', value: 'React + Material UI' },
+            { name: 'Payment Gateway', value: 'Stripe or Razorpay integration' },
+            { name: 'Tracking System', value: 'Google Maps API, Geolocation Services' }
+        ],
+    },
+    {
         key: "file-manager",
         name: "File Manager",
         description: "A full-stack file management application built with the MERN stack (MongoDB, Express.js, React.js, and Node.js). It allows users to upload, download, and organize files efficiently.",
