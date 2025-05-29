@@ -67,7 +67,7 @@
                         <h2 class="text-xl font-bold mb-4">Screenshots</h2>
                         <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
                             <template v-for="att in project.atts">
-                                <img :src="`projects/${project.key}/${att}`" class="h-80 rounded-md cursor-zoom-in mb-3" @click="openModal(`projects/${project.key}/${att}`)">
+                                <img :src="`projects/${project.key}/${att}`" class="h-80 max-w-fit rounded-md cursor-zoom-in mb-3" @click="openModal(`projects/${project.key}/${att}`)">
                             </template>
                         </div>
                     </section>
@@ -78,7 +78,7 @@
                            <span @click="closeModal" class="absolute top-5 right-5 h-8 w-8 flex items-center justify-center cursor-pointer text-gray-100 bg-black bg-opacity-50 hover:bg-opacity-40 backdrop-blur-lg rounded-full">
                                 <i class="fa fa-times"></i>
                            </span>
-                           <img :src="selectedImage" alt="Selected Screenshot" class="max-w-fit max-h-screen">
+                           <img :src="selectedImage" alt="Selected Screenshot" class="max-w-screen max-h-screen">
                        </div>
                    </div>
 
