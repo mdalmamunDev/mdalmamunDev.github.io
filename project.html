@@ -10,153 +10,185 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="styles/project.css">
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white font-sans antialiased">
     <div id="app">
+        <!-- Animated background elements -->
+        <div class="fixed inset-0 z-0 overflow-hidden">
+            <div class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 animate-pulse"></div>
+            <div class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 animate-bounce"></div>
+            <div class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 animate-ping"></div>
+            <div class="absolute w-72 h-72 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-5 bottom-1/4 right-1/4 animate-pulse"></div>
+        </div>
+
         <template v-if="loaded">
             <template v-if="project">
                 <!-- Header -->
-                <header id="navbar" class="bg-blue-500 py-4 fixed top-0 w-full transition-transform duration-300">
+                <header id="navbar" class="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-opacity-90 backdrop-blur-lg py-4 fixed top-0 w-full transition-transform duration-300 z-30 border-b border-white border-opacity-20 shadow-2xl">
                     <div class="max-w-5xl mx-auto flex justify-between items-center px-6">
                         <div class="text-center">
-                            <a href="/" class="text-xl font-bold" title="Back to portfolio home"><i class="fas fa-home"></i></a>
-                            <i class="fa-solid fa-angles-right text-blue-200"></i>
-                            <a href="#top" class="text-xl font-bold">{{ project.name }}</a>
+                            <a href="/" class="text-xl font-bold text-white hover:text-purple-300 transition-colors duration-300" title="Back to portfolio home">
+                                <i class="fas fa-home"></i>
+                            </a>
+                            <i class="fa-solid fa-angles-right text-purple-200 mx-2"></i>
+                            <a href="#top" class="text-xl font-bold text-white hover:text-purple-300 transition-colors duration-300">{{ project.name }}</a>
                         </div>
-                        <nav>
-                            <a href="#about" class="text-blue-100 hover:text-white px-3">About</a>
-                            <a href="#faq" class="text-blue-100 hover:text-white px-3">FAQ</a>
-                            <a href="#info" class="text-blue-100 hover:text-white px-3">Info</a>
+                        <nav class="flex space-x-6">
+                            <a href="#about" class="text-purple-100 hover:text-white px-3 py-2 rounded-full transition-all duration-300 hover:bg-white hover:bg-opacity-20">About</a>
+                            <a href="#faq" class="text-purple-100 hover:text-white px-3 py-2 rounded-full transition-all duration-300 hover:bg-white hover:bg-opacity-20">FAQ</a>
+                            <a href="#info" class="text-purple-100 hover:text-white px-3 py-2 rounded-full transition-all duration-300 hover:bg-white hover:bg-opacity-20">Info</a>
                         </nav>
                     </div>
                 </header>
 
-                <main class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg pt-20">
-                    <section id="top" class="divider pb-6">
+                <main class="relative max-w-5xl mx-auto bg-gray-900 bg-opacity-60 backdrop-blur-lg p-8 rounded-3xl shadow-2xl mt-24 mb-12 border border-white border-opacity-10 z-10">
+                    <section id="top" class="pb-8 border-b border-white border-opacity-20 mb-8">
                         <!-- Logo and Title -->
-                        <div class="flex items-center space-x-4">
-                            <img :src="`projects/${project.key}/icon.png`" alt="Logo" class="w-12 h-12">
+                        <div class="flex items-center space-x-6 mb-6">
+                            <div class="relative">
+                                <div class="absolute -inset-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl opacity-20 blur-lg"></div>
+                                <img :src="`projects/${project.key}/icon.png`" alt="Logo" class="relative w-16 h-16 rounded-2xl border-2 border-gradient-to-r from-purple-400 to-pink-400">
+                            </div>
                             <div>
-                                <h2 class="text-xl font-extrabold">{{ project.name }}</h2>
-                                <p class="text-gray-400">{{ project.version }}</p>
+                                <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{{ project.name }}</h2>
+                                <p class="text-gray-300 text-lg font-medium">{{ project.version }}</p>
                                 <p v-if="false" class="text-blue-400">By Md. Al Mamun</p>
                             </div>
                         </div>
 
                         <!-- Tagline -->
-                        <p class="mt-4 text-base font-semibold">{{ project.tagline }}</p>
-
-                        <!-- Download Button -->
-                        <div class="mt-4">
-                            <a :href="project.link" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">
-                                <span>Get the latest version</span>
-                                <span class="text-sm text-gray-300">{{ project.version }}</span>
-                                <i class="fa-solid fa-download"></i>
-                            </a>
+                        <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20 mb-6">
+                            <p class="text-xl font-semibold text-gray-200 leading-relaxed">{{ project.tagline }}</p>
                         </div>
 
-                        <!-- Older Versions -->
-                        <div class="mt-3 text-center">
-                            <a :href="project.repo" target="_blank" class="w-full border border-gray-400 text-gray-300 hover:bg-gray-700 text-white font-bold py-2 rounded-lg flex items-center justify-center space-x-2">Checkout codes via GitHub
-                                <i class="fa-brands fa-github ms-2"></i>
+                        <!-- Download Buttons -->
+                        <div class="space-y-4">
+                            <a :href="project.link" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                                <span class="text-lg">Get the latest version</span>
+                                <span class="text-sm text-purple-100 bg-white bg-opacity-20 px-3 py-1 rounded-full">{{ project.version }}</span>
+                                <i class="fa-solid fa-download text-lg"></i>
+                            </a>
+
+                            <a :href="project.repo" target="_blank" class="w-full bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 border border-gray-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                                <span class="text-lg">Checkout codes via GitHub</span>
+                                <i class="fa-brands fa-github text-lg"></i>
                             </a>
                         </div>
                     </section>
 
                     <!-- Screenshots -->
-                    <section class="pb-6 divider">
-                        <h2 class="text-xl font-bold mb-4">Screenshots</h2>
-                        <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
+                    <section class="pb-8 border-b border-white border-opacity-20 mb-8">
+                        <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">Screenshots</h2>
+                        <div class="flex space-x-4 overflow-x-auto scrollbar-hide pb-4">
                             <template v-for="att in project.atts">
-                                <img :src="`projects/${project.key}/${att}`" class="h-80 max-w-fit rounded-md cursor-zoom-in mb-3" @click="openModal(`projects/${project.key}/${att}`)">
+                                <div class="relative group flex-shrink-0">
+                                    <div class="absolute -inset-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl opacity-0 group-hover:opacity-20 blur-lg transition-opacity duration-300"></div>
+                                    <img :src="`projects/${project.key}/${att}`" class="relative h-80 max-w-fit rounded-2xl cursor-zoom-in border-2 border-white border-opacity-20 group-hover:border-purple-400 group-hover:border-opacity-50 transition-all duration-300 transform group-hover:scale-105 shadow-xl" @click="openModal(`projects/${project.key}/${att}`)">
+                                </div>
                             </template>
                         </div>
                     </section>
                 
                     <!-- Modal -->
-                   <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                       <div class="p-4 rounded-lg relative">
-                           <span @click="closeModal" class="absolute top-5 right-5 h-8 w-8 flex items-center justify-center cursor-pointer text-gray-100 bg-black bg-opacity-50 hover:bg-opacity-40 backdrop-blur-lg rounded-full">
-                                <i class="fa fa-times"></i>
-                           </span>
-                           <img :src="selectedImage" alt="Selected Screenshot" class="max-w-screen max-h-screen">
-                       </div>
-                   </div>
+                    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50">
+                        <div class="p-6 rounded-3xl relative max-w-screen-lg max-h-screen-lg">
+                            <button @click="closeModal" class="absolute -top-4 -right-4 h-12 w-12 flex items-center justify-center cursor-pointer text-white bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 backdrop-blur-lg rounded-full transition-all duration-300 transform hover:scale-110 shadow-xl z-10">
+                                <i class="fa fa-times text-lg"></i>
+                            </button>
+                            <img :src="selectedImage" alt="Selected Screenshot" class="max-w-full max-h-full rounded-2xl shadow-2xl">
+                        </div>
+                    </div>
 
                     <!-- About -->
-                    <section class="pb-6 divider" id="about">
-                        <h2 class="text-xl font-bold mb-4">About</h2>
-                        <div class="text-gray-300 text-sm" v-html="project.about"></div>
+                    <section class="pb-8 border-b border-white border-opacity-20 mb-8" id="about">
+                        <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">About</h2>
+                        <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                            <div class="text-gray-300 text-lg leading-relaxed" v-html="project.about"></div>
+                        </div>
                     </section>
 
                     <!-- Requirements and FAQ -->
-                    <section id="faq">
-                        <h2 class="text-xl font-bold mb-4">Requirements <span class="text-gray-400">[Latest version]</span></h2>
-                        <p class="text-gray-300 text-sm">{{ project.require }}</p>
+                    <section id="faq" class="pb-8 border-b border-white border-opacity-20 mb-8">
+                        <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">Requirements 
+                            <span class="text-gray-400 text-xl font-medium">[Latest version]</span>
+                        </h2>
+                        <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20 mb-8">
+                            <p class="text-gray-300 text-lg">{{ project.require }}</p>
+                        </div>
 
-                        <h2 class="text-xl font-bold mb-4 mt-8">Frequently Asked Questions</h2>
-                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 text-sm">
-                            <div v-for="(q, index) in project.faq" :key="index">
-                                <h3 class="font-semibold mb-1">{{ q.qs }}</h3>
-                                <p class="text-gray-300">{{ q.ans }}</p>
+                        <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">Frequently Asked Questions</h2>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div v-for="(q, index) in project.faq" :key="index" class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                                <h3 class="font-bold mb-3 text-white text-lg">{{ q.qs }}</h3>
+                                <p class="text-gray-300 leading-relaxed">{{ q.ans }}</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Information -->
-                    <section class="pt-6" id="info">
-                        <h2 class="text-xl font-bold mb-4">Information About {{ project.name }} {{ project.version }}</h2>
-                        <div class="text-gray-300 space-y-2 text-sm">
-                            <div v-for="(info, index) in project.info" :key="index">
-                                <span class="font-semibold">{{ info.name }}: </span><span class="text-gray-400">{{ info.value }}</span>
+                    <section class="pt-0" id="info">
+                        <h2 class="text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">Information About {{ project.name }} {{ project.version }}</h2>
+                        <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                            <div class="text-gray-300 space-y-4 text-lg">
+                                <div v-for="(info, index) in project.info" :key="index" class="flex flex-wrap items-center">
+                                    <span class="font-bold text-white mr-2">{{ info.name }}:</span>
+                                    <span class="text-gray-400">{{ info.value }}</span>
+                                </div>
                             </div>
                         </div>
                     </section>
                 </main>
 
                 <!-- Footer -->
-                <footer class="bg-blue-500 py-4">
+                <footer class="relative bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-opacity-90 backdrop-blur-lg py-6 border-t border-white border-opacity-20 z-10">
                     <div class="max-w-5xl mx-auto flex justify-center items-center px-6">
-                        <p class="text-gray-300">&copy; {{ new Date().getFullYear() }} Md. Al Mamun | {{ project.name }}</p>
+                        <p class="text-gray-200 text-lg">&copy; {{ new Date().getFullYear() }} 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 font-bold">Md. Al Mamun</span>
+                            | {{ project.name }}
+                        </p>
                     </div>
                 </footer>
             </template>
 
-            <div v-else class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 relative overflow-hidden">
-
-                <!-- Animated Background Waves -->
+            <!-- Error Page -->
+            <div v-else class="flex items-center justify-center min-h-screen relative overflow-hidden z-10">
+                <!-- Enhanced Error Design -->
                 <div class="absolute top-0 left-0 w-full h-64 bg-red-600 opacity-10 blur-2xl transform -rotate-6"></div>
                 <div class="absolute bottom-0 right-0 w-full h-64 bg-red-400 opacity-10 blur-2xl transform rotate-6"></div>
             
-                <div class="relative z-10 text-center p-8 bg-white shadow-2xl rounded-lg max-w-lg">
+                <div class="relative z-10 text-center p-12 bg-gray-900 bg-opacity-80 backdrop-blur-lg shadow-2xl rounded-3xl max-w-2xl border border-red-400 border-opacity-30">
                     <!-- Floating Warning Icon -->
-                    <div class="floating inline-block p-4 bg-red-600 text-white rounded-full shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-16 h-16">
+                    <div class="floating inline-block p-6 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-full shadow-2xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-20 h-20">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M4.93 4.93a10 10 0 0114.14 0M4.93 19.07a10 10 0 0014.14 0M12 3v1m0 16v1m8-8h1M3 12h1"></path>
                         </svg>
                     </div>
             
-                    <h1 class="mt-6 text-4xl font-extrabold text-gray-900 wave">Oops! Something Went Wrong</h1>
-                    <p class="mt-2 text-gray-600">An unexpected error occurred. Try refreshing the page or coming back later.</p>
+                    <h1 class="text-5xl font-black bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent mb-4 wave">Oops! Something Went Wrong</h1>
+                    <p class="text-gray-300 text-xl mb-8 leading-relaxed">An unexpected error occurred. Try refreshing the page or coming back later.</p>
             
-                    <div class="mt-6">
-                        <button @click="back" class="px-6 py-3 bg-red-600 text-white rounded-lg shadow-lg hover:bg-red-700 transition-all transform hover:scale-105">
+                    <div class="mt-8">
+                        <button @click="back" class="px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-bold rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105">
                             Go Back
                         </button>
                     </div>
                 </div>
             </div>
         </template>
-        <div v-else class="text-center min-h-screen flex items-center justify-center">
-            <div role="status">
-                <svg aria-hidden="true" class="inline w-20 h-20 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                </svg>
-                <h2 class="sr-onl mt-3 text-3xl">Loading...</span>
+
+        <!-- Loading Page -->
+        <div v-else class="text-center min-h-screen flex items-center justify-center relative z-10">
+            <div role="status" class="text-center">
+                <div class="relative">
+                    <div class="absolute -inset-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 blur-2xl animate-pulse"></div>
+                    <svg aria-hidden="true" class="relative inline w-24 h-24 text-gray-600 animate-spin fill-purple-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                    </svg>
+                </div>
+                <h2 class="mt-6 text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Loading...</h2>
             </div>
         </div>
     </div>
-
 
     <script src="scripts/projects.js"></script>
     <script>
@@ -215,7 +247,7 @@
     <!-- screenshots scroll on mouse scroll -->
      <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const screenshotContainer = document.querySelector("#app .divider + section .flex.overflow-x-auto");
+            const screenshotContainer = document.querySelector("#app .pb-8 .flex.overflow-x-auto");
 
             if (screenshotContainer) {
                 screenshotContainer.addEventListener("wheel", function (event) {

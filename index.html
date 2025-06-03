@@ -12,164 +12,224 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 
-<body class="bg-gray-900 text-white font-sans antialiased">
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white font-sans antialiased">
 
     <div id="app">
+        <!-- Animated background elements -->
+        <div class="fixed inset-0 z-0 overflow-hidden">
+            <div class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 animate-pulse"></div>
+            <div class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 animate-bounce"></div>
+            <div class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 animate-ping"></div>
+            <div class="absolute w-72 h-72 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-5 bottom-1/4 right-1/4 animate-pulse"></div>
+        </div>
+
         <!-- Header Section -->
-        <header class="text-center h-screen relative flex items-center justify-center bg-cover bg-center" 
+        <header class="relative text-center h-screen flex items-center justify-center bg-cover bg-center z-10" 
             :style="{ backgroundImage: `url('images/hero-banner/${currBanner}.jpg')` }"
         >
             <!-- Navbar -->
-            <nav class="absolute top-0 left-0 w-full flex items-center justify-between py-5 px-3 md:px-5 text-white bg-transparent z-10">
-                <div class="text-lg md:text-2xl font-bold">MyPortfolio</div>
-                <ul class="flex space-x-4 text-sm md:text-lg">
-                    <li><a href="#about" class="hover:underline">About</a></li>
-                    <li><a href="#projects" class="hover:underline">Projects</a></li>
-                    <li><a href="#contact" class="hover:underline">Contact</a></li>
+            <nav class="absolute top-0 left-0 w-full flex items-center justify-between py-6 px-6 md:px-8 text-white bg-black bg-opacity-20 backdrop-blur-sm border-b border-white border-opacity-10 z-20">
+                <div class="text-xl md:text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    MyPortfolio
+                </div>
+                <ul class="flex space-x-6 text-sm md:text-lg font-medium">
+                    <li><a href="#about" class="hover:text-purple-300 transition-colors duration-300 hover:underline">About</a></li>
+                    <li><a href="#projects" class="hover:text-purple-300 transition-colors duration-300 hover:underline">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-purple-300 transition-colors duration-300 hover:underline">Contact</a></li>
                 </ul>
             </nav>
 
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <!-- Enhanced Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-purple-900 to-black opacity-70"></div>
 
             <!-- Content -->
-            <div class="relative text-white text-md md:text-2xl font-bold p-2 z-5">
-                <img src="images/profile.jpg" alt="Profile Picture" class="mx-auto w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg">
-                <h1 class="text-3xl md:text-4xl font-bold mt-4">Md. Al Mamun</h1>
-                <p class="text-sm md:text-xl mt-2">Passionate Developer from Bangladesh 🚀</p>
-                <div class="mt-4">
-                    <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
-                    <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
-                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
+            <div class="relative text-white text-md md:text-2xl font-bold p-6 z-10 max-w-4xl mx-auto">
+                <div class="relative mb-8">
+                    <img src="images/profile.jpg" alt="Profile Picture" class="relative mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-gradient-to-r from-purple-400 to-pink-400 shadow-2xl">
                 </div>
-                <p class="pt-6 md:pt-10">{{ heroText }}</p>
+                
+                <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent mb-4 animate-pulse">
+                    Md. Al Mamun
+                </h1>
+                
+                <p class="text-lg md:text-2xl mt-4 text-gray-200 font-medium">
+                    Passionate Developer from Bangladesh 
+                    <span class="inline-block animate-bounce text-2xl">🚀</span>
+                </p>
+                
+                <div class="mt-6 flex flex-wrap justify-center gap-4">
+                    <a href="https://github.com/mdalmamunDev" target="_blank" class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                        LinkedIn
+                    </a>
+                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                        LeetCode
+                    </a>
+                </div>
+                
+                <div class="mt-8 p-6 bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl border border-white border-opacity-20">
+                    <p class="text-lg md:text-xl font-mono">{{ heroText }}</p>
+                </div>
             </div>
         </header>
 
-
         <!-- About Me Section -->
-        <section id="about" class="max-w-5xl mx-auto py-12 px-4 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
-            <img src="images/about-me.gif" alt="Md. Al Mamun" class="w-48 h-48 rounded-md border-4 border-blue-500 shadow-lg md:mb-0">
+        <section id="about" class="relative max-w-6xl mx-auto py-20 px-6 z-10">
+            <div class="flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12">
+                <div class="relative">
+                    <div class="absolute -inset-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl opacity-20 blur-xl"></div>
+                    <img src="images/about-me.gif" alt="Md. Al Mamun" class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-3xl border-4 border-gradient-to-r from-purple-400 to-pink-400 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                </div>
 
-            <div class="text-center md:text-left">
-                <h2 class="text-3xl font-semibold">About Me</h2>
-                <p class="mt-4 text-gray-300">
-                    Hello, I’m <span class="text-blue-400 font-semibold">Md. Al Mamun</span>, born on August 10, 2002, in Porsha, Naogaon.
-                    I am a passionate and motivated developer skilled in web and mobile development. With expertise in
-                    <span class="text-blue-400 font-semibold">MERN Stack</span>,
-                    <span class="text-blue-400 font-semibold">Laravel</span> and 
-                    <span class="text-blue-400 font-semibold">Vue.js</span>
-                    for backend and frontend solutions, as well as 
-                    <span class="text-blue-400 font-semibold">Android Studio</span>
-                    for mobile applications, I focus on creating innovative and efficient applications. I am always eager to tackle complex problems and
-                    collaborate with teams. I pride myself on my quick learning abilities and enthusiasm for exploring new technologies.
-                </p>
-                <p class="mt-2 text-gray-300">
-                    You can also checkout my <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="text-blue-400 hover:underline">Resume (CV)</a> for more details about my skills and experiences.
-                </p>
-                <div class="mt-4">
-                    <a href="https://github.com/mdalmamunDev" target="_blank" class="text-blue-400 hover:underline">GitHub</a> |
-                    <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a> |
-                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="text-blue-400 hover:underline">LeetCode</a>
+                <div class="flex-1 text-center lg:text-left bg-gray-900 bg-opacity-40 backdrop-blur-lg rounded-3xl p-8 border border-white border-opacity-10 shadow-2xl">
+                    <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+                        About Me
+                    </h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        Hello, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">Md. Al Mamun</span>, born on August 10, 2002, in Porsha, Naogaon.
+                        I am a passionate and motivated developer skilled in web and mobile development. With expertise in
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-bold">MERN Stack</span>,
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-400 font-bold">Laravel</span> and 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-bold">Vue.js</span>
+                        for backend and frontend solutions, as well as 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400 font-bold">Android Studio</span>
+                        for mobile applications, I focus on creating innovative and efficient applications.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        You can also checkout my <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="text-purple-400 hover:text-purple-300 underline font-semibold">Resume (CV)</a> for more details about my skills and experiences.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="https://github.com/mdalmamunDev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105">
+                            LinkedIn
+                        </a>
+                        <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
+                            LeetCode
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-
-
         <!-- Projects Section -->
-        <section id="projects" class="bg-gray-800 py-12">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl font-semibold text-center">Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                    <div v-for="project in projects" :key="project.key" class="bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-                        <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')" alt="Project Image" class="w-full h-48 object-cover">
+        <section id="projects" class="relative bg-black bg-opacity-30 backdrop-blur-sm py-20 z-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+                    Featured Projects
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <div v-for="project in projects" :key="project.key" class="group bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                        <div class="relative overflow-hidden">
+                            <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')" alt="Project Image" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                        </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold">{{ project.name }}</h3>
-                            <p class="text-gray-300 mt-2">{{ project.description }}</p>
-                            <p class="text-gray-400 text-sm mt-1">{{ project.duration }}</p>
-                            <a :href="project.repo || '#'" target="_blank" class="mt-4 inline-block hover:underline" 
-                                :class="{
-                                    'text-blue-400': project.repo,
-                                    'text-gray-500 pointer-events-none': !project.repo
-                                }"
-                            >
-                                GitHub
-                            </a>
-                            <template v-if="project.link">
-                                |
-                                <a :href="project.link" class="mt-4 inline-block text-blue-400 hover:underline">
-                                    {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">{{ project.name }}</h3>
+                            <p class="text-gray-300 mb-2 text-sm leading-relaxed">{{ project.description }}</p>
+                            <p class="text-gray-400 text-xs mb-4">{{ project.duration }}</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a :href="project.repo || '#'" target="_blank" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" 
+                                    :class="{
+                                        'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white': project.repo,
+                                        'bg-gray-600 text-gray-400 cursor-not-allowed': !project.repo
+                                    }"
+                                >
+                                    GitHub
                                 </a>
-                            </template>
-                            <template v-if="project.about">
-                                |
-                                <a :href="'project.html?key='+project.key" class="mt-4 inline-block text-blue-400 hover:underline">
-                                    More
-                                </a>
-                            </template>
+                                <template v-if="project.link">
+                                    <a :href="project.link" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
+                                        {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
+                                    </a>
+                                </template>
+                                <template v-if="project.about">
+                                    <a :href="'project.html?key='+project.key" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
+                                        More
+                                    </a>
+                                </template>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="more-btn mt-8">
+            <div class="more-btn mt-12">
                 <div class="btn"><a href="https://github.com/mdalmamunDev?tab=repositories" target="_blank">Show More</a></div>
             </div>	     
         </section>
 
         <!-- Information Section -->
-        <section class="max-w-5xl mx-auto py-12 px-4">
-            <h2 class="text-3xl font-semibold text-center">Additional Information</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <section class="relative max-w-7xl mx-auto py-20 px-6 z-10">
+            <h2 class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+                My Journey
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Education Column -->
-                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-4">Education</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm text-gray-500">2020 - 2025</p>
-                            <h4 class="font-semibold">Computer Science & Tech.(CST)</h4>
-                            <p class="text-gray-300">TMSS Institute of Science and ICT</p>
-                            <p class="text-gray-400">Gained practical knowledge in software development, programming languages, and system analysis.</p>
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
-                        <div>
-                            <p class="text-sm text-gray-500">2018 - 2020</p>
-                            <h4 class="font-semibold">Secondary School Certificate(SSC)</h4>
-                            <p class="text-gray-300">Shariyala Islamia Dakhil Madrasha</p>
-                            <p class="text-gray-400">Achieved comprehensive education with a focus on mathematics and science, laying a strong foundation for further studies in engineering and technology.</p>
+                        <h3 class="text-2xl font-bold text-white">Education</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-purple-400 pl-4">
+                            <p class="text-sm text-purple-400 font-semibold">2020 - 2025</p>
+                            <h4 class="font-bold text-white text-lg">Computer Science & Tech.(CST)</h4>
+                            <p class="text-gray-300 font-medium">TMSS Institute of Science and ICT</p>
+                            <p class="text-gray-400 text-sm mt-2">Gained practical knowledge in software development, programming languages, and system analysis.</p>
+                        </div>
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <p class="text-sm text-blue-400 font-semibold">2018 - 2020</p>
+                            <h4 class="font-bold text-white text-lg">Secondary School Certificate(SSC)</h4>
+                            <p class="text-gray-300 font-medium">Shariyala Islamia Dakhil Madrasha</p>
+                            <p class="text-gray-400 text-sm mt-2">Achieved comprehensive education with a focus on mathematics and science.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Experiences Column -->
-                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-4">Experiences</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm text-gray-500">06/2024 - Present</p>
-                            <h4 class="font-semibold">Intern on TMSS ICT</h4>
-                            <p class="text-gray-400">Completed an industry attachment at TMSS ICT, where I contributed to the design team on various projects, fostering innovative solutions and enhancing creative strategies.</p>
-
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-blue-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-briefcase text-white text-xl"></i>
                         </div>
-                        <div>
-                            <p class="text-sm text-gray-500">07/2024 - 11/2024</p>
-                            <h4 class="font-semibold">SkillSyntax: Project Manager</h4>
-                            <p class="text-gray-400">Project Lead & Developer for a comprehensive course management system application.</p>
+                        <h3 class="text-2xl font-bold text-white">Experience</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <p class="text-sm text-green-400 font-semibold">06/2024 - Present</p>
+                            <h4 class="font-bold text-white text-lg">Intern on TMSS ICT</h4>
+                            <p class="text-gray-400 text-sm mt-2">Completed an industry attachment at TMSS ICT, contributing to design team projects and innovative solutions.</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-400 pl-4">
+                            <p class="text-sm text-yellow-400 font-semibold">07/2024 - 11/2024</p>
+                            <h4 class="font-bold text-white text-lg">SkillSyntax: Project Manager</h4>
+                            <p class="text-gray-400 text-sm mt-2">Project Lead & Developer for a comprehensive course management system application.</p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Interests Column -->
-                <div class="bg-gray-700 rounded-lg p-6 shadow-lg">
-                    <h3 class="text-xl font-bold mb-4">Interests</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm text-gray-500">Coding Challenges</p>
-                            <h4 class="font-semibold">Problem-Solving</h4>
-                            <p class="text-gray-400">Actively participating in coding challenges on platforms like LeetCode and HackerRank to sharpen my problem-solving skills and improve algorithmic thinking.</p>
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-green-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-heart text-white text-xl"></i>
                         </div>
-                        <div>
-                            <p class="text-sm text-gray-500">New Technologies</p>
-                            <h4 class="font-semibold">Exploration</h4>
-                            <p class="text-gray-400">Consistently staying updated with the latest trends in web and mobile development through online courses, tech blogs, and community forums.</p>
+                        <h3 class="text-2xl font-bold text-white">Interests</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <p class="text-sm text-red-400 font-semibold">Coding Challenges</p>
+                            <h4 class="font-bold text-white text-lg">Problem-Solving</h4>
+                            <p class="text-gray-400 text-sm mt-2">Actively participating in coding challenges on platforms like LeetCode and HackerRank.</p>
+                        </div>
+                        <div class="border-l-4 border-purple-400 pl-4">
+                            <p class="text-sm text-purple-400 font-semibold">New Technologies</p>
+                            <h4 class="font-bold text-white text-lg">Exploration</h4>
+                            <p class="text-gray-400 text-sm mt-2">Consistently staying updated with the latest trends in web and mobile development.</p>
                         </div>
                     </div>
                 </div>
@@ -177,46 +237,53 @@
         </section>
 
         <!-- Technologies Section -->
-        <section class="bg-gray-800 py-12">
-            <div class="max-w-3xl mx-auto py-12 text-center">
-                <h2 class="text-3xl font-semibold">Technologies & Tools</h2>
-                <div class="flex flex-wrap justify-center gap-4 mt-6">
-                    <span v-for="skill in skills" :key="skill" class="px-4 py-2 bg-gray-700 rounded-full shadow">{{ skill }}</span>
+        <section class="relative bg-black bg-opacity-30 backdrop-blur-sm py-20 z-10">
+            <div class="max-w-5xl mx-auto text-center px-6">
+                <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+                    Technologies & Tools
+                </h2>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span v-for="skill in skills" :key="skill" class="px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 backdrop-blur-sm rounded-full shadow-xl border border-white border-opacity-20 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl font-medium">
+                        {{ skill }}
+                    </span>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="pt-12">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl font-semibold">Get in Touch</h2>
-                <p class="mt-4 text-gray-400">Feel free to reach out through social media!</p>
-                <div class="flex justify-center space-x-4 mt-4">
-                    <a href="mailto:mamun.dev.pro@gmail.com" title="Email" class="text-blue-400 hover:text-blue-600">
-                        <i class="fa-solid fa-envelope fa-2x"></i>
+        <section id="contact" class="relative pt-20 pb-12 z-10">
+            <div class="max-w-5xl mx-auto text-center px-6">
+                <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+                    Get in Touch
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">Feel free to reach out through social media!</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:mamun.dev.pro@gmail.com" title="Email" class="group w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i class="fa-solid fa-envelope text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://github.com/mdalmamunDev" title="Github" target="_blank" class="text-blue-400 hover:text-blue-600">
-                        <i class="fab fa-github fa-2x"></i>
+                    <a href="https://github.com/mdalmamunDev" title="Github" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full flex items-center justify-center hover:from-gray-600 hover:to-gray-500 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i class="fab fa-github text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mdalmamunDev/" title="Linkedin" target="_blank" class="text-blue-400 hover:text-blue-600">
-                        <i class="fab fa-linkedin fa-2x"></i>
+                    <a href="https://www.linkedin.com/in/mdalmamunDev/" title="Linkedin" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i class="fab fa-linkedin text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://leetcode.com/u/madalmamun53/" title="LeetCode" target="_blank" class="text-blue-400 hover:text-blue-600">
-                        <i class="fab fa-leanpub fa-2x"></i>
+                    <a href="https://leetcode.com/u/madalmamun53/" title="LeetCode" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center hover:from-orange-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i class="fab fa-leanpub text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://www.facebook.com/mdalmamun.dev" title="Facebook" target="_blank" class="text-blue-400 hover:text-blue-600">
-                        <i class="fab fa-facebook fa-2x"></i>
+                    <a href="https://www.facebook.com/mdalmamun.dev" title="Facebook" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i class="fab fa-facebook text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="text-center py-6">
-            <p class="text-gray-500">&#169; {{ new Date().getFullYear() }} Md. Al Mamun</p>
+        <footer class="relative text-center py-8 border-t border-white border-opacity-10 z-10">
+            <p class="text-gray-400 text-lg">&#169; {{ new Date().getFullYear() }} 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">Md. Al Mamun</span>
+            </p>
         </footer>
     </div>
-
 
     <script src="scripts/projects.js"></script>
     <script>
@@ -230,8 +297,6 @@
                 skills: [
                     "MERN Stack", "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript", "PHP", "Python", "DSA", "Git", "MySQL", "React", "MongoDB", "Express", "Node.js"
                 ],
-
-
                 projects: projects,
                 TYPE_ANDROID: TYPE_ANDROID,
                 TYPE_WEB: TYPE_WEB,
@@ -243,19 +308,18 @@
                 const text = 'Full-Stack Developer | MERN Stack | Laravel | Vue.js | Android Enthusiast | Algorithms | DSA | Android Studio';
                 const phrases = text.split(' | ');
                 let index = 0;
-                const typingSpeed = 1000; // Adjust typing speed here (50ms per character)
+                const typingSpeed = 1000;
                 const typeWriter = () => {
                     if (index < phrases.length) {
                         if (index !== 0)
                             this.heroText += ' | ';
                         this.heroText += phrases[index];
                         index++;
-                        setTimeout(typeWriter, typingSpeed); // Recursive call to type next character
+                        setTimeout(typeWriter, typingSpeed);
                     }
                 };
-                typeWriter(); // Start the typing animation
+                typeWriter();
 
-                // Random banner rotation
                 setInterval(this.setRandomBanner, this.bannerDelay);
                 this.setRandomBanner();
             },
@@ -265,13 +329,11 @@
                     let banner;
                     do {
                         banner = Math.ceil(Math.random() * this.totalBanners);
-                    } while (banner === this.currBanner); // Ensure the new banner is different
+                    } while (banner === this.currBanner);
 
-                    // Preload the new banner image
                     const newImage = new Image();
                     newImage.src = `images/hero-banner/${banner}.jpg`;
 
-                    // Once the image is loaded, update the banner
                     newImage.onload = () => {
                         this.currBanner = banner;
                     };
