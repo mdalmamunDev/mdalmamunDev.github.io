@@ -9,7 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="styles/more-btn.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/animation.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+   
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white font-sans antialiased">
@@ -17,10 +21,10 @@
     <div id="app">
         <!-- Animated background elements -->
         <div class="fixed inset-0 z-0 overflow-hidden">
-            <div class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 animate-pulse"></div>
-            <div class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 animate-bounce"></div>
-            <div class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 animate-ping"></div>
-            <div class="absolute w-72 h-72 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-5 bottom-1/4 right-1/4 animate-pulse"></div>
+            <div class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 pulse-animation"></div>
+            <div class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 bounce-animation"></div>
+            <div class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 ping-animation"></div>
+            <div class="absolute w-72 h-72 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-5 bottom-1/4 right-1/4 pulse-animation"></div>
         </div>
 
         <!-- Header Section -->
@@ -48,13 +52,13 @@
                     <img src="images/profile.jpg" alt="Profile Picture" class="relative mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-gradient-to-r from-purple-400 to-pink-400 shadow-2xl">
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent mb-4 animate-pulse">
+                <h1 class="text-4xl md:text-6xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent mb-4 pulse-animation">
                     Md. Al Mamun
                 </h1>
                 
                 <p class="text-lg md:text-2xl mt-4 text-gray-200 font-medium">
                     Passionate Developer from Bangladesh 
-                    <span class="inline-block animate-bounce text-2xl">🚀</span>
+                    <span class="inline-block bounce-animation text-2xl">🚀</span>
                 </p>
                 
                 <div class="mt-6 flex flex-wrap justify-center gap-4">
@@ -69,14 +73,14 @@
                     </a>
                 </div>
                 
-                <div class="mt-8 p-6 bg-black bg-opacity-30 backdrop-blur-sm rounded-2xl border border-white border-opacity-20">
+                <div class="glass mt-8 p-6">
                     <p class="text-lg md:text-xl font-mono">{{ heroText }}</p>
                 </div>
             </div>
         </header>
 
         <!-- About Me Section -->
-        <section id="about" class="relative max-w-6xl mx-auto py-20 px-6 z-10">
+        <!-- <section id="about" class="relative max-w-6xl mx-auto py-20 px-6 z-10">
             <div class="flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12">
                 <div class="relative">
                     <div class="absolute -inset-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl opacity-20 blur-xl"></div>
@@ -113,6 +117,50 @@
                     </div>
                 </div>
             </div>
+        </section> -->
+
+        <section id="about" ref="aboutSection" class="about-section">
+            <div
+                v-for="(section, index) in sections"
+                :key="index"
+                class="about-item w-full h-screen flex flex-col md:flex-row"
+            >
+                <!-- Left - Image -->
+                <div class="about-left w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden bg-black">
+                    <div class="number-badge">{{ String(index + 1).padStart(2, '0') }}</div>
+                    <img
+                        :src="section.image"
+                        :alt="section.title"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="image-overlay"></div>
+                </div>
+
+                <!-- Right - Content -->
+                <div
+                    :class="`about-right gradient-bg w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gradient-to-br ${section.gradient} p-6 sm:p-8 md:p-12 lg:p-16 xl:p-24`"
+                >
+                    <div class="max-w-2xl relative z-10">
+                        <div class="mb-8 md:mb-12">
+                            <span class="decorative-dot"></span>
+                            <span class="text-white text-opacity-70 text-sm md:text-base uppercase tracking-widest font-medium" style="font-family: 'Space Grotesk', sans-serif;">
+                                {{ section.category }}
+                            </span>
+                        </div>
+                        
+                        <h2 class="title-main text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 md:mb-10">
+                            {{ section.title }}
+                        </h2>
+                        <div class="glass-effect" v-html="section.description"></div>
+                        <div class="mt-8 md:mt-12 flex items-center gap-4">
+                            <div class="w-16 h-0.5 bg-white opacity-30"></div>
+                            <span class="text-white text-opacity-50 text-sm" style="font-family: 'Inter', sans-serif;">
+                                {{ section.stat }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
@@ -122,7 +170,7 @@
                     Featured Projects
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                    <div v-for="project in projects" :key="project.key" class="group bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <div v-for="project in projects" :key="project.key" class="group glass rounded-2xl shadow-2xl overflow-hidden border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                         <div class="relative overflow-hidden">
                             <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')" alt="Project Image" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
@@ -167,7 +215,7 @@
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Education Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
                         <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-graduation-cap text-white text-xl"></i>
@@ -191,7 +239,7 @@
                 </div>
 
                 <!-- Experiences Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-blue-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-blue-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
                         <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-briefcase text-white text-xl"></i>
@@ -199,21 +247,21 @@
                         <h3 class="text-2xl font-bold text-white">Experience</h3>
                     </div>
                     <div class="space-y-6">
+                        <div class="border-l-4 border-yellow-400 pl-4">
+                            <p class="text-sm text-green-400 font-semibold">04/2025 - Present</p>
+                            <h4 class="font-bold text-white text-lg">Betopia Group</h4>
+                            <p class="text-gray-400 text-sm mt-2"> During my time there, I gained extensive experience in areas such as system design, improving user experience (UX), and developing scalable solutions.</p>
+                        </div>
                         <div class="border-l-4 border-green-400 pl-4">
-                            <p class="text-sm text-green-400 font-semibold">06/2024 - Present</p>
+                            <p class="text-sm text-yellow-400 font-semibold">06/2024 - 04/2025</p>
                             <h4 class="font-bold text-white text-lg">Intern on TMSS ICT</h4>
                             <p class="text-gray-400 text-sm mt-2">Completed an industry attachment at TMSS ICT, contributing to design team projects and innovative solutions.</p>
-                        </div>
-                        <div class="border-l-4 border-yellow-400 pl-4">
-                            <p class="text-sm text-yellow-400 font-semibold">07/2024 - 11/2024</p>
-                            <h4 class="font-bold text-white text-lg">SkillSyntax: Project Manager</h4>
-                            <p class="text-gray-400 text-sm mt-2">Project Lead & Developer for a comprehensive course management system application.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Interests Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-green-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-green-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
                         <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-heart text-white text-xl"></i>
@@ -300,6 +348,79 @@
                 projects: projects,
                 TYPE_ANDROID: TYPE_ANDROID,
                 TYPE_WEB: TYPE_WEB,
+
+
+
+                // about me scroll
+                sections: [
+                    {
+                        category: "Introduction",
+                        title: "About Me",
+                        // description: "Hello, I'm Md. Al Mamun, born on August 10, 2002, in Porsha, Naogaon. I am a passionate and motivated developer skilled in web and mobile development.",
+                        description: `
+                            <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                                Hello, I'm Md. Al Mamun, born on August 10, 2002, in Porsha, Naogaon. I am a passionate and motivated developer skilled in web and mobile development.
+                            </p>
+                            <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                                You can also checkout my <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="text-purple-400 hover:text-purple-300 underline font-semibold">Resume (CV)</a> for more details about my skills and experiences.
+                            </p>
+                            <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                                <a href="https://github.com/mdalmamunDev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                                    GitHub
+                                </a>
+                                <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105">
+                                    LinkedIn
+                                </a>
+                                <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
+                                    LeetCode
+                                </a>
+                            </div>
+                        `,
+                        image: "https://miro.medium.com/1*gReLR6hZjwyBxHmfLN1AVw.gif",
+                        gradient: "from-black via-gray-900 to-black",
+                        stat: "Born Aug 10, 2002"
+                    },
+                    {
+                        category: "Backend Expertise",
+                        title: "MERN Stack",
+                        description: `<p class="description-text text-base sm:text-lg md:text-xl lg:text-2xl text-white text-opacity-90">
+                                Building powerful full-stack applications with MongoDB, Express.js, React, and Node.js. Creating scalable and efficient backend solutions with modern JavaScript technologies.
+                            </p>`,
+                        image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=1200&q=80",
+                        gradient: "from-teal-600 via-cyan-600 to-blue-600",
+                        stat: "Full-Stack Developer"
+                    },
+                    {
+                        category: "Backend Framework",
+                        title: "Laravel",
+                        description: `<p class="description-text text-base sm:text-lg md:text-xl lg:text-2xl text-white text-opacity-90">
+                                Developing robust and elegant backend solutions using Laravel's powerful PHP framework. Building RESTful APIs and complex web applications with clean architecture.
+                            </p>`,
+                        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80",
+                        gradient: "from-black via-gray-900 to-black",
+                        stat: "PHP Expert"
+                    },
+                    {
+                        category: "Frontend Framework",
+                        title: "Vue.js",
+                        description: `<p class="description-text text-base sm:text-lg md:text-xl lg:text-2xl text-white text-opacity-90">
+                                Crafting interactive and dynamic user interfaces with Vue.js. Creating seamless frontend experiences with component-based architecture and reactive data flow.
+                            </p>`,
+                        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80",
+                        gradient: "from-teal-600 via-cyan-600 to-blue-600",
+                        stat: "UI/UX Focused"
+                    },
+                    {
+                        category: "Mobile Development",
+                        title: "Android Studio",
+                        description: `<p class="description-text text-base sm:text-lg md:text-xl lg:text-2xl text-white text-opacity-90">
+                                Developing native Android applications with Android Studio. Bringing ideas to life on mobile platforms with focus on creating innovative and efficient mobile solutions.
+                            </p>`,
+                        image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=1200&q=80",
+                        gradient: "from-black via-gray-900 to-black",
+                        stat: "Mobile Developer"
+                    }
+                ],
             },
             computed: {
                 //
@@ -322,6 +443,9 @@
 
                 setInterval(this.setRandomBanner, this.bannerDelay);
                 this.setRandomBanner();
+
+
+                this.setupScrollObserver();
             },
 
             methods: {
@@ -338,6 +462,24 @@
                         this.currBanner = banner;
                     };
                 },
+
+                setupScrollObserver() {
+                    const observerOptions = {
+                        threshold: 0.3,
+                        rootMargin: '0px'
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                            }
+                        });
+                    }, observerOptions);
+
+                    const items = this.$refs.aboutSection.querySelectorAll('.about-item');
+                    items.forEach(item => observer.observe(item));
+                }
             },
         });
     </script>

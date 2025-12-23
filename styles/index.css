@@ -1,0 +1,204 @@
+.glass {
+  background: rgba(250, 244, 244, 0.055);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.about-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  scroll-behavior: smooth;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  background: #0a0a0a;
+}
+
+.about-section::-webkit-scrollbar {
+  display: none;
+}
+
+.about-section {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.about-item {
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.about-left,
+.about-right {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-left {
+  transform: translateX(-120px) scale(0.9);
+}
+
+.about-right {
+  transform: translateX(120px) scale(0.9);
+}
+
+.about-item.visible .about-left,
+.about-item.visible .about-right {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), transparent);
+  mix-blend-mode: multiply;
+  transition: all 0.6s ease;
+}
+
+.about-left:hover .image-overlay {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.about-left img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-left:hover img {
+  transform: scale(1.05);
+}
+
+.number-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8rem;
+  font-weight: 700;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  line-height: 1;
+  z-index: 10;
+  transition: all 0.6s ease;
+}
+
+.about-item.visible .number-badge {
+  color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.title-main {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.title-main::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #fff, transparent);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.about-item.visible .title-main::after {
+  width: 100%;
+}
+
+.description-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+}
+
+.gradient-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.decorative-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1rem;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.about-item.visible .decorative-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+.glass-effect:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .about-left {
+    transform: translateY(-80px) scale(0.9);
+  }
+
+  .about-right {
+    transform: translateY(80px) scale(0.9);
+  }
+
+  .about-item.visible .about-left,
+  .about-item.visible .about-right {
+    transform: translateY(0) scale(1);
+  }
+
+  .number-badge {
+    font-size: 4rem;
+    top: 1rem;
+    left: 1rem;
+  }
+}
