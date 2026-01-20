@@ -1,3 +1,31 @@
+.animated-gradient {
+    background: linear-gradient(
+        90deg,
+        #a855f7,
+        #ec4899,
+        #06b6d4,
+        #a855f7
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 10s ease infinite;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
 @keyframes pulse {
   0%, 100% {
     opacity: .2;
