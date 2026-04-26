@@ -4,150 +4,239 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <title>Md. Al Mamun | Portfolio</title>
+    <meta name="description"
+        content="Md. Al Mamun — Full-Stack Developer specializing in Backend (Node.js, Laravel), Frontend (Vue.js, React), Database design, and Server deployment. Based in Bangladesh." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <title>Md. Al Mamun | Full-Stack Developer</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="styles/more-btn.css" />
+    <link rel="stylesheet" href="styles/hero.css" />
     <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="styles/animation.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 
-<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white font-sans antialiased">
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
 
     <div id="app">
-        <!-- Animated background elements -->
-        <div class="fixed inset-0 z-0 overflow-hidden">
-            <div class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 pulse-animation"></div>
-            <div class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 bounce-animation"></div>
-            <div class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 ping-animation"></div>
-            <div class="absolute w-72 h-72 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-5 bottom-1/4 right-1/4 pulse-animation"></div>
-        </div>
 
-        <!-- Header Section -->
-        <header class="relative text-center h-screen flex items-center justify-center bg-cover bg-center z-10" 
-            :style="{ backgroundImage: `url('images/hero-banner/${currBanner}.jpg')` }"
-        >
-            <!-- Navbar -->
-            <nav class="absolute top-0 left-0 w-full flex items-center justify-between py-6 px-6 md:px-8 text-white bg-black bg-opacity-20 backdrop-blur-sm border-b border-white border-opacity-10 z-20">
-                <div class="text-xl md:text-3xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    MyPortfolio
-                </div>
-                <ul class="flex space-x-6 text-sm md:text-lg font-medium">
-                    <li><a href="#about" class="hover:text-purple-300 transition-colors duration-300 hover:underline">About</a></li>
-                    <li><a href="#projects" class="hover:text-purple-300 transition-colors duration-300 hover:underline">Projects</a></li>
-                    <li><a href="#contact" class="hover:text-purple-300 transition-colors duration-300 hover:underline">Contact</a></li>
-                </ul>
-            </nav>
+        <!-- ═══════════════════════════════════════════════════
+             CINEMATIC HERO — Scroll-Driven Slide Reel
+             ═══════════════════════════════════════════════════ -->
+        <div id="hero-wrapper">
+            <div id="hero-sticky">
 
-            <!-- Enhanced Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black via-purple-900 to-black opacity-70"></div>
+                <!-- Particle Canvas -->
+                <canvas id="particle-canvas"></canvas>
 
-            <!-- Content -->
-            <div class="relative text-white text-md md:text-2xl font-bold p-6 z-10 max-w-4xl mx-auto">
-                <div class="relative mb-8">
-                    <img src="images/profile.jpg" alt="Profile Picture" class="relative mx-auto w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-gradient-to-r from-purple-400 to-pink-400 shadow-2xl">
-                </div>
-                
-                <h1 class="text-4xl md:text-6xl font-black mb-4 animated-gradient">
-                    Md. Al Mamun
-                </h1>
-                
-                <p class="text-lg md:text-2xl mt-4 text-gray-200 font-medium">
-                    Passionate Developer from Bangladesh 
-                    <span class="inline-block bounce-animation text-2xl">🚀</span>
-                </p>
-                
-                <div class="mt-6 flex flex-wrap justify-center gap-4">
-                    <a href="https://github.com/mdalmamunDev" target="_blank" class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                        LinkedIn
-                    </a>
-                    <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-                        LeetCode
-                    </a>
-                </div>
-                
-                <div class="glass mt-8 p-6">
-                    <p class="text-lg md:text-xl font-mono">{{ heroText }}</p>
-                </div>
-            </div>
-        </header>
+                <!-- Per-slide coloured background layers (crossfade) -->
+                <div v-for="(slide, i) in heroSlides" :key="'bg' + i" class="hero-theme-bg" :style="{
+                        background: 'radial-gradient(ellipse 65% 60% at 78% 50%, ' + slide.theme + '1e, transparent)',
+                        opacity: i === currentSlide ? 1 : 0
+                    }"></div>
 
-        <!-- About Me Section -->
-        <!-- <section id="about" class="relative max-w-6xl mx-auto py-20 px-6 z-10">
-            <div class="flex flex-col lg:flex-row items-center space-y-8 lg:space-y-0 lg:space-x-12">
-                <div class="relative">
-                    <div class="absolute -inset-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl opacity-20 blur-xl"></div>
-                    <img src="images/about-me.gif" alt="Md. Al Mamun" class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-3xl border-4 border-gradient-to-r from-purple-400 to-pink-400 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                </div>
+                <!-- Dot grid -->
+                <div id="hero-grid"></div>
 
-                <div class="flex-1 text-center lg:text-left bg-gray-900 bg-opacity-40 backdrop-blur-lg rounded-3xl p-8 border border-white border-opacity-10 shadow-2xl">
-                    <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
-                        About Me
-                    </h2>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
-                        Hello, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">Md. Al Mamun</span>, born on August 10, 2002, in Porsha, Naogaon.
-                        I am a passionate and motivated developer skilled in web and mobile development. With expertise in
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-bold">MERN Stack</span>,
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-400 font-bold">Laravel</span> and 
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400 font-bold">Vue.js</span>
-                        for backend and frontend solutions, as well as 
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400 font-bold">Android Studio</span>
-                        for mobile applications, I focus on creating innovative and efficient applications.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        You can also checkout my <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="text-purple-400 hover:text-purple-300 underline font-semibold">Resume (CV)</a> for more details about my skills and experiences.
-                    </p>
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                        <a href="https://github.com/mdalmamunDev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
-                            GitHub
+                <!-- ── NAVBAR ──────────────────────────────────── -->
+                <nav class="hero-nav">
+                    <div class="nav-logo magnetic-btn">
+                        <span class="logo-letter">M</span><span class="logo-dot"
+                            :style="{ color: heroSlides[currentSlide].theme }">.</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="#about" class="nav-link magnetic-btn">About</a></li>
+                        <li><a href="#projects" class="nav-link magnetic-btn">Projects</a></li>
+                        <li><a href="#contact" class="nav-link magnetic-btn">Contact</a></li>
+                        <li>
+                            <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="nav-cta magnetic-btn">
+                                Resume <i class="fas fa-arrow-up-right-from-square fa-xs"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="nav-mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+
+                <!-- ── HERO CONTENT SPLIT ─────────────────────── -->
+                <div class="hero-split">
+
+                    <!-- ◀ LEFT — Identity / Category ──────────── -->
+                    <div class="hero-left">
+                        <transition name="hero-left-anim" mode="out-in">
+                            <div class="hero-left-inner" :key="currentSlide">
+                                <div class="hero-eyebrow">
+                                    <span class="eyebrow-line"></span>
+                                    {{ heroSlides[currentSlide].eyebrow }}
+                                </div>
+
+                                <h1 class="hero-big-left" v-html="heroSlides[currentSlide].leftBig"></h1>
+
+                                <template v-if="currentSlide === 0">
+                                    <div class="hero-cta-row">
+                                        <a href="https://github.com/mdalmamunDev" target="_blank"
+                                            class="hero-btn-primary magnetic-btn"
+                                            :style="{ background: heroSlides[currentSlide].theme }">
+                                            <i class="fab fa-github"></i> GitHub
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank"
+                                            class="hero-btn-outline magnetic-btn">
+                                            LinkedIn <i class="fas fa-external-link-alt fa-xs"></i>
+                                        </a>
+                                    </div>
+                                    <div class="hero-scroll-hint">
+                                        <div class="scroll-mouse">
+                                            <div class="scroll-wheel"></div>
+                                        </div>
+                                        <span>Scroll to explore</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <!-- ▌ DIVIDER ─────────────────────────────── -->
+                    <div class="hero-divider">
+                        <div class="divider-track">
+                            <div class="divider-glow" :style="{ background: heroSlides[currentSlide].theme }"></div>
+                        </div>
+                        <div class="slide-dots">
+                            <div v-for="(slide, i) in heroSlides" :key="'dot' + i" class="slide-dot"
+                                :class="{ active: i === currentSlide }"
+                                :style="i === currentSlide ? { background: heroSlides[currentSlide].theme, boxShadow: '0 0 10px ' + heroSlides[currentSlide].theme } : {}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ▶ RIGHT — Role Details ─────────────────── -->
+                    <div class="hero-right">
+                        <transition name="hero-right-anim" mode="out-in">
+                            <div class="hero-right-inner" :key="currentSlide">
+                                <!-- Slide counter -->
+                                <div class="hero-role-counter">
+                                    <span class="counter-current" :style="{ color: heroSlides[currentSlide].theme }">
+                                        {{ String(currentSlide + 1).padStart(2, '0') }}
+                                    </span>
+                                    <span class="counter-sep">/</span>
+                                    <span class="counter-total">{{ String(heroSlides.length).padStart(2, '0') }}</span>
+                                </div>
+
+                                <!-- Role title -->
+                                <div class="hero-role-title">{{ heroSlides[currentSlide].roleTitle }}</div>
+
+                                <!-- Tagline -->
+                                <p class="hero-tagline">{{ heroSlides[currentSlide].tagline }}</p>
+
+                                <!-- Tech pills -->
+                                <div class="hero-tech-grid" v-if="heroSlides[currentSlide].techs.length">
+                                    <span v-for="(tech, ti) in heroSlides[currentSlide].techs" :key="ti"
+                                        class="tech-pill"
+                                        :style="{ '--pill-color': heroSlides[currentSlide].theme, 'animation-delay': (ti * 0.07) + 's' }">{{
+                                        tech }}</span>
+                                </div>
+
+                                <!-- Stats (slide 0 only) -->
+                                <div class="hero-stats-row" v-if="currentSlide === 0">
+                                    <div class="hero-stat">
+                                        <span class="stat-num">2+</span>
+                                        <span class="stat-label">Years Exp.</span>
+                                    </div>
+                                    <div class="hero-stat">
+                                        <span class="stat-num">20+</span>
+                                        <span class="stat-label">Projects</span>
+                                    </div>
+                                    <div class="hero-stat">
+                                        <span class="stat-num">5+</span>
+                                        <span class="stat-label">Stacks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+
+                </div>
+                <!-- END .hero-split -->
+
+                <!-- ── BOTTOM STATUS BAR ───────────────────────── -->
+                <div class="hero-bottom-bar">
+                    <div class="hero-available">
+                        <span class="available-dot"></span>
+                        <span>Available for opportunities</span>
+                    </div>
+                    <div class="hero-progress-track">
+                        <div class="hero-progress-fill" :style="{
+                                width: (currentSlide / (heroSlides.length - 1) * 100) + '%',
+                                background: heroSlides[currentSlide].theme
+                            }">
+                        </div>
+                    </div>
+                    <div class="hero-bottom-socials">
+                        <a href="mailto:mamun.dev.pro@gmail.com" class="bottom-social magnetic-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105">
-                            LinkedIn
+                        <a href="https://github.com/mdalmamunDev" target="_blank" class="bottom-social magnetic-btn"
+                            title="GitHub">
+                            <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
-                            LeetCode
+                        <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank"
+                            class="bottom-social magnetic-btn" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-        </section> -->
 
-        <section id="about" ref="aboutSection" class="about-section">
+            </div>
+        </div>
+        <!-- END #hero-wrapper ══════════════════════════════ -->
+
+        <!-- Animated background decorations (for sections below) -->
+        <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
             <div
-                v-for="(section, index) in sections"
-                :key="index"
-                class="about-item w-full h-screen flex flex-col md:flex-row"
-            >
+                class="absolute w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-5 -top-48 -left-48 pulse-animation">
+            </div>
+            <div
+                class="absolute w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-5 top-1/4 right-0 bounce-animation">
+            </div>
+            <div
+                class="absolute w-64 h-64 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-5 bottom-0 left-1/4 ping-animation">
+            </div>
+        </div>
+
+        <!-- ── ABOUT SECTION ────────────────────────────────── -->
+        <section id="about" ref="aboutSection" class="about-section">
+            <div v-for="(section, index) in sections" :key="index"
+                class="about-item w-full h-screen flex flex-col md:flex-row">
                 <!-- Left - Image -->
                 <div class="about-left w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden bg-black">
                     <div class="number-badge">{{ String(index + 1).padStart(2, '0') }}</div>
-                    <img
-                        :src="section.image"
-                        :alt="section.title"
-                        class="w-full h-full object-cover"
-                    />
+                    <img :src="section.image" :alt="section.title" class="w-full h-full object-cover" />
                     <div class="image-overlay"></div>
                 </div>
 
                 <!-- Right - Content -->
                 <div
-                    :class="`about-right gradient-bg w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gradient-to-br ${section.gradient} p-6 sm:p-8 md:p-12 lg:p-16 xl:p-24`"
-                >
+                    :class="`about-right gradient-bg w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-gradient-to-br ${section.gradient} p-6 sm:p-8 md:p-12 lg:p-16 xl:p-24`">
                     <div class="max-w-2xl relative z-10">
                         <div class="mb-8 md:mb-12">
                             <span class="decorative-dot"></span>
-                            <span class="text-white text-opacity-70 text-sm md:text-base uppercase tracking-widest font-medium" style="font-family: 'Space Grotesk', sans-serif;">
+                            <span
+                                class="text-white text-opacity-70 text-sm md:text-base uppercase tracking-widest font-medium"
+                                style="font-family: 'Space Grotesk', sans-serif;">
                                 {{ section.category }}
                             </span>
                         </div>
-                        
-                        <h2 class="title-main text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 md:mb-10">
+
+                        <h2
+                            class="title-main text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 md:mb-10">
                             {{ section.title }}
                         </h2>
                         <div class="glass-effect" v-html="section.description"></div>
@@ -162,38 +251,47 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- ── PROJECTS SECTION ─────────────────────────────── -->
         <section id="projects" class="relative bg-black bg-opacity-30 backdrop-blur-sm py-20 z-10">
             <div class="max-w-7xl mx-auto px-6">
-                <h2 class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+                <h2
+                    class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
                     Featured Projects
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                    <div v-for="project in projects" :key="project.key" class="group glass rounded-2xl shadow-2xl overflow-hidden border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                    <div v-for="project in projects" :key="project.key"
+                        class="group glass rounded-2xl shadow-2xl overflow-hidden border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                         <div class="relative overflow-hidden">
-                            <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')" alt="Project Image" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                            <img :src="'projects/'+ (project.image ? `${project.key}/${project.image}` : 'def.png')"
+                                alt="Project Image"
+                                class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60">
+                            </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">{{ project.name }}</h3>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                                {{ project.name }}</h3>
                             <p class="text-gray-300 mb-2 text-sm leading-relaxed">{{ project.description }}</p>
                             <p class="text-gray-400 text-xs mb-4">{{ project.duration }}</p>
                             <div class="flex flex-wrap gap-3">
-                                <a :href="project.repo || '#'" target="_blank" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105" 
+                                <a :href="project.repo || '#'" target="_blank"
+                                    class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
                                     :class="{
                                         'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white': project.repo,
                                         'bg-gray-600 text-gray-400 cursor-not-allowed': !project.repo
-                                    }"
-                                >
+                                    }">
                                     GitHub
                                 </a>
                                 <template v-if="project.link">
-                                    <a :href="project.link" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
+                                    <a :href="project.link"
+                                        class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
                                         {{ project.type === TYPE_ANDROID ? 'Get APK' : 'View' }}
                                     </a>
                                 </template>
                                 <template v-if="project.about">
-                                    <a :href="'project.html?key='+project.key" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
+                                    <a :href="'project.html?key='+project.key"
+                                        class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105">
                                         More
                                     </a>
                                 </template>
@@ -203,20 +301,24 @@
                 </div>
             </div>
             <div class="more-btn mt-12">
-                <div class="btn"><a href="https://github.com/mdalmamunDev?tab=repositories" target="_blank">Show More</a></div>
-            </div>	     
+                <div class="btn"><a href="https://github.com/mdalmamunDev?tab=repositories" target="_blank">Show
+                        More</a></div>
+            </div>
         </section>
 
-        <!-- Information Section -->
+        <!-- ── JOURNEY SECTION ──────────────────────────────── -->
         <section class="relative max-w-7xl mx-auto py-20 px-6 z-10">
-            <h2 class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+            <h2
+                class="text-4xl md:text-5xl font-black text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
                 My Journey
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Education Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <!-- Education -->
+                <div
+                    class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white">Education</h3>
@@ -224,23 +326,27 @@
                     <div class="space-y-6">
                         <div class="border-l-4 border-purple-400 pl-4">
                             <p class="text-sm text-purple-400 font-semibold">2020 - 2025</p>
-                            <h4 class="font-bold text-white text-lg">Computer Science & Tech.(CST)</h4>
+                            <h4 class="font-bold text-white text-lg">Computer Science &amp; Tech.(CST)</h4>
                             <p class="text-gray-300 font-medium">TMSS Institute of Science and ICT</p>
-                            <p class="text-gray-400 text-sm mt-2">Gained practical knowledge in software development, programming languages, and system analysis.</p>
+                            <p class="text-gray-400 text-sm mt-2">Gained practical knowledge in software development,
+                                programming languages, and system analysis.</p>
                         </div>
                         <div class="border-l-4 border-blue-400 pl-4">
                             <p class="text-sm text-blue-400 font-semibold">2018 - 2020</p>
                             <h4 class="font-bold text-white text-lg">Secondary School Certificate(SSC)</h4>
                             <p class="text-gray-300 font-medium">Shariyala Islamia Dakhil Madrasha</p>
-                            <p class="text-gray-400 text-sm mt-2">Achieved comprehensive education with a focus on mathematics and science.</p>
+                            <p class="text-gray-400 text-sm mt-2">Achieved comprehensive education with a focus on
+                                mathematics and science.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Experiences Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-blue-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <!-- Experience -->
+                <div
+                    class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-blue-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-briefcase text-white text-xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white">Experience</h3>
@@ -249,20 +355,25 @@
                         <div class="border-l-4 border-yellow-400 pl-4">
                             <p class="text-sm text-green-400 font-semibold">04/2025 - Present</p>
                             <h4 class="font-bold text-white text-lg">Betopia Group</h4>
-                            <p class="text-gray-400 text-sm mt-2"> During my time there, I gained extensive experience in areas such as system design, improving user experience (UX), and developing scalable solutions.</p>
+                            <p class="text-gray-400 text-sm mt-2">During my time there, I gained extensive experience in
+                                areas such as system design, improving user experience (UX), and developing scalable
+                                solutions.</p>
                         </div>
                         <div class="border-l-4 border-green-400 pl-4">
                             <p class="text-sm text-yellow-400 font-semibold">06/2024 - 04/2025</p>
                             <h4 class="font-bold text-white text-lg">Intern on TMSS ICT</h4>
-                            <p class="text-gray-400 text-sm mt-2">Completed an industry attachment at TMSS ICT, contributing to design team projects and innovative solutions.</p>
+                            <p class="text-gray-400 text-sm mt-2">Completed an industry attachment at TMSS ICT,
+                                contributing to design team projects and innovative solutions.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interests Column -->
-                <div class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-green-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
+                <!-- Interests -->
+                <div
+                    class="bg-gray-900 bg-opacity-60 backdrop-blur-lg glass rounded-3xl p-8 shadow-2xl border border-white border-opacity-10 hover:border-green-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-105">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-heart text-white text-xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-white">Interests</h3>
@@ -271,91 +382,146 @@
                         <div class="border-l-4 border-red-400 pl-4">
                             <p class="text-sm text-red-400 font-semibold">Coding Challenges</p>
                             <h4 class="font-bold text-white text-lg">Problem-Solving</h4>
-                            <p class="text-gray-400 text-sm mt-2">Actively participating in coding challenges on platforms like LeetCode and HackerRank.</p>
+                            <p class="text-gray-400 text-sm mt-2">Actively participating in coding challenges on
+                                platforms like LeetCode and HackerRank.</p>
                         </div>
                         <div class="border-l-4 border-purple-400 pl-4">
                             <p class="text-sm text-purple-400 font-semibold">New Technologies</p>
                             <h4 class="font-bold text-white text-lg">Exploration</h4>
-                            <p class="text-gray-400 text-sm mt-2">Consistently staying updated with the latest trends in web and mobile development.</p>
+                            <p class="text-gray-400 text-sm mt-2">Consistently staying updated with the latest trends in
+                                web and mobile development.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Technologies Section -->
+        <!-- ── TECHNOLOGIES SECTION ─────────────────────────── -->
         <section class="relative bg-black bg-opacity-30 backdrop-blur-sm py-20 z-10">
             <div class="max-w-5xl mx-auto text-center px-6">
-                <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
-                    Technologies & Tools
+                <h2
+                    class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12">
+                    Technologies &amp; Tools
                 </h2>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <span v-for="skill in skills" :key="skill" class="px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 backdrop-blur-sm rounded-full shadow-xl border border-white border-opacity-20 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl font-medium">
+                    <span v-for="skill in skills" :key="skill"
+                        class="px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-700 backdrop-blur-sm rounded-full shadow-xl border border-white border-opacity-20 hover:border-purple-400 hover:border-opacity-50 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl font-medium">
                         {{ skill }}
                     </span>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- ── CONTACT SECTION ─────────────────────────────── -->
         <section id="contact" class="relative pt-20 pb-12 z-10">
             <div class="max-w-5xl mx-auto text-center px-6">
-                <h2 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+                <h2
+                    class="text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
                     Get in Touch
                 </h2>
                 <p class="text-xl text-gray-300 mb-8">Feel free to reach out through social media!</p>
                 <div class="flex justify-center space-x-6">
-                    <a href="mailto:mamun.dev.pro@gmail.com" title="Email" class="group w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
-                        <i class="fa-solid fa-envelope text-2xl text-white group-hover:scale-110 transition-transform"></i>
+                    <a href="mailto:mamun.dev.pro@gmail.com" title="Email"
+                        class="group w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                        <i
+                            class="fa-solid fa-envelope text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://github.com/mdalmamunDev" title="Github" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full flex items-center justify-center hover:from-gray-600 hover:to-gray-500 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                    <a href="https://github.com/mdalmamunDev" title="Github" target="_blank"
+                        class="group w-16 h-16 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full flex items-center justify-center hover:from-gray-600 hover:to-gray-500 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
                         <i class="fab fa-github text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mdalmamunDev/" title="Linkedin" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                    <a href="https://www.linkedin.com/in/mdalmamunDev/" title="Linkedin" target="_blank"
+                        class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
                         <i class="fab fa-linkedin text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://leetcode.com/u/madalmamun53/" title="LeetCode" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center hover:from-orange-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                    <a href="https://leetcode.com/u/madalmamun53/" title="LeetCode" target="_blank"
+                        class="group w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center hover:from-orange-400 hover:to-yellow-400 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
                         <i class="fab fa-leanpub text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="https://www.facebook.com/mdalmamun.dev" title="Facebook" target="_blank" class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
+                    <a href="https://www.facebook.com/mdalmamun.dev" title="Facebook" target="_blank"
+                        class="group w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-xl">
                         <i class="fab fa-facebook text-2xl text-white group-hover:scale-110 transition-transform"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
+        <!-- ── FOOTER ─────────────────────────────────────────── -->
         <footer class="relative text-center py-8 border-t border-white border-opacity-10 z-10">
-            <p class="text-gray-400 text-lg">&#169; {{ new Date().getFullYear() }} 
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">Md. Al Mamun</span>
+            <p class="text-gray-400 text-lg">&#169; {{ new Date().getFullYear() }}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-bold">Md.
+                    Al Mamun</span>
             </p>
         </footer>
+
     </div>
+    <!-- END #app -->
 
     <script src="scripts/projects.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                heroText: '',
-                currBanner: 1,
-                totalBanners: 11,
-                bannerDelay: 10000,
+
+                /* ── HERO SLIDES ───────────────────────────── */
+                currentSlide: 0,
+                heroSlides: [
+                    {
+                        eyebrow: 'Hello, I am',
+                        leftBig: '<span class="line">Md. Al</span><span class="line">Mamun</span>',
+                        roleTitle: 'Full-Stack Developer',
+                        tagline: 'Building impactful digital products — from concept and system architecture all the way to production deployment.',
+                        techs: [],
+                        theme: '#7c3aed',
+                    },
+                    {
+                        eyebrow: 'I do in',
+                        leftBig: '<span class="line">BACK</span><span class="line">END</span>',
+                        roleTitle: 'Backend Engineering',
+                        tagline: 'Architecting scalable, high-performance server-side systems and RESTful APIs built to last.',
+                        techs: ['Node.js', 'Laravel', 'Express.js', 'PHP', 'REST APIs', 'JWT Auth'],
+                        theme: '#059669',
+                    },
+                    {
+                        eyebrow: 'I do in',
+                        leftBig: '<span class="line">FRONT</span><span class="line">END</span>',
+                        roleTitle: 'Frontend Development',
+                        tagline: 'Crafting interactive, responsive UIs that feel alive and delight real users.',
+                        techs: ['Vue.js', 'React', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind'],
+                        theme: '#2563eb',
+                    },
+                    {
+                        eyebrow: 'I do in',
+                        leftBig: '<span class="line">DATA</span><span class="line">BASE</span>',
+                        roleTitle: 'Database Design',
+                        tagline: 'Modeling efficient, normalized data structures for complex, real-world systems that scale.',
+                        techs: ['MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Prisma ORM'],
+                        theme: '#d97706',
+                    },
+                    {
+                        eyebrow: 'I do in',
+                        leftBig: '<span class="line">SERVER</span><span class="line">&amp; DEPLOY</span>',
+                        roleTitle: 'Server & Deployment',
+                        tagline: 'Taking applications from local dev to live production — reliably, securely, and with confidence.',
+                        techs: ['Linux', 'Docker', 'Nginx', 'CI/CD', 'Git', 'SSH'],
+                        theme: '#e11d48',
+                    },
+                ],
+
+                /* ── EXISTING DATA ─────────────────────────── */
                 skills: [
-                    "MERN Stack", "Laravel", "Vue.js", "Android Studio", "Java", "JavaScript", "PHP", "Python", "DSA", "Git", "MySQL", "React", "MongoDB", "Express", "Node.js"
+                    "MERN Stack", "Laravel", "Vue.js", "Android Studio", "Java",
+                    "JavaScript", "PHP", "Python", "DSA", "Git",
+                    "MySQL", "React", "MongoDB", "Express", "Node.js"
                 ],
                 projects: projects,
                 TYPE_ANDROID: TYPE_ANDROID,
                 TYPE_WEB: TYPE_WEB,
 
-
-
-                // about me scroll
                 sections: [
                     {
                         category: "Introduction",
                         title: "About Me",
-                        // description: "Hello, I'm Md. Al Mamun, born on August 10, 2002, in Porsha, Naogaon. I am a passionate and motivated developer skilled in web and mobile development.",
                         description: `
                             <p class="text-gray-300 text-lg leading-relaxed mb-4">
                                 Hello, I'm Md. Al Mamun, born on August 10, 2002, in Porsha, Naogaon. I am a passionate and motivated developer skilled in web and mobile development.
@@ -364,15 +530,9 @@
                                 You can also checkout my <a href="assets/Resume - Md Al Mamun.pdf" target="_blank" class="text-purple-400 hover:text-purple-300 underline font-semibold">Resume (CV)</a> for more details about my skills and experiences.
                             </p>
                             <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-                                <a href="https://github.com/mdalmamunDev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
-                                    GitHub
-                                </a>
-                                <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105">
-                                    LinkedIn
-                                </a>
-                                <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
-                                    LeetCode
-                                </a>
+                                <a href="https://github.com/mdalmamunDev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">GitHub</a>
+                                <a href="https://www.linkedin.com/in/mdalmamunDev/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105">LinkedIn</a>
+                                <a href="https://leetcode.com/u/madalmamun53/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">LeetCode</a>
                             </div>
                         `,
                         image: "https://miro.medium.com/1*gReLR6hZjwyBxHmfLN1AVw.gif",
@@ -421,53 +581,172 @@
                     }
                 ],
             },
-            computed: {
-                //
-            },
+
             mounted() {
-                const text = 'Full-Stack Developer | MERN Stack | Laravel | Vue.js | Android Enthusiast | Algorithms | DSA | Android Studio';
-                const phrases = text.split(' | ');
-                let index = 0;
-                const typingSpeed = 1000;
-                const typeWriter = () => {
-                    if (index < phrases.length) {
-                        if (index !== 0)
-                            this.heroText += ' | ';
-                        this.heroText += phrases[index];
-                        index++;
-                        setTimeout(typeWriter, typingSpeed);
-                    }
-                };
-                typeWriter();
-
-                setInterval(this.setRandomBanner, this.bannerDelay);
-                this.setRandomBanner();
-
-
+                this.setupHeroScroll();
+                this.initParticles();
+                this.initCursor();
                 this.setupScrollObserver();
             },
 
             methods: {
-                setRandomBanner() {
-                    let banner;
-                    do {
-                        banner = Math.ceil(Math.random() * this.totalBanners);
-                    } while (banner === this.currBanner);
 
-                    const newImage = new Image();
-                    newImage.src = `images/hero-banner/${banner}.jpg`;
+                /* ── SCROLL-DRIVEN HERO ─────────────────────── */
+                setupHeroScroll() {
+                    const wrapper = document.getElementById('hero-wrapper');
+                    const total = this.heroSlides.length;
+                    let autoPlaying = true;
+                    let autoTimer;
 
-                    newImage.onload = () => {
-                        this.currBanner = banner;
+                    // Auto-play: advance slides every 3.8s until user scrolls
+                    const advance = () => {
+                        if (this.currentSlide < total - 1) {
+                            this.currentSlide++;
+                        } else {
+                            clearInterval(autoTimer);
+                            autoPlaying = false;
+                        }
                     };
+                    autoTimer = setInterval(advance, 3800);
+
+                    window.addEventListener('scroll', () => {
+                        // First scroll disables auto-play and hands control to scroll
+                        if (autoPlaying) {
+                            clearInterval(autoTimer);
+                            autoPlaying = false;
+                        }
+
+                        const rect = wrapper.getBoundingClientRect();
+                        const scrollableHeight = wrapper.offsetHeight - window.innerHeight;
+                        const scrolled = Math.max(0, -rect.top);
+
+                        if (scrolled > scrollableHeight) return;
+
+                        const progress = scrolled / scrollableHeight;
+                        const slide = Math.min(Math.floor(progress * total), total - 1);
+
+                        if (slide !== this.currentSlide) {
+                            this.currentSlide = slide;
+                        }
+                    }, { passive: true });
                 },
 
+                /* ── PARTICLE CANVAS ────────────────────────── */
+                initParticles() {
+                    const canvas = document.getElementById('particle-canvas');
+                    const ctx = canvas.getContext('2d');
+                    const vm = this;
+
+                    const hexToRgb = hex => {
+                        const r = parseInt(hex.slice(1, 3), 16);
+                        const g = parseInt(hex.slice(3, 5), 16);
+                        const b = parseInt(hex.slice(5, 7), 16);
+                        return { r, g, b };
+                    };
+
+                    // Interpolated colour (follows currentSlide theme)
+                    let current = hexToRgb(vm.heroSlides[0].theme);
+
+                    const resize = () => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    };
+                    resize();
+                    window.addEventListener('resize', resize);
+
+                    // Build particles
+                    const particles = Array.from({ length: 80 }, () => ({
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        vx: (Math.random() - 0.5) * 0.55,
+                        vy: (Math.random() - 0.5) * 0.55,
+                        r: Math.random() * 1.8 + 0.4,
+                        opacity: Math.random() * 0.38 + 0.08,
+                    }));
+
+                    const animate = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                        // Lerp colour toward current slide theme
+                        const tgt = hexToRgb(vm.heroSlides[vm.currentSlide].theme);
+                        current.r += (tgt.r - current.r) * 0.022;
+                        current.g += (tgt.g - current.g) * 0.022;
+                        current.b += (tgt.b - current.b) * 0.022;
+
+                        const cr = Math.round(current.r);
+                        const cg = Math.round(current.g);
+                        const cb = Math.round(current.b);
+
+                        particles.forEach((p, i) => {
+                            p.x += p.vx;
+                            p.y += p.vy;
+                            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                            // Draw dot
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(${cr},${cg},${cb},${p.opacity})`;
+                            ctx.fill();
+
+                            // Connect nearby particles
+                            for (let j = i + 1; j < particles.length; j++) {
+                                const p2 = particles[j];
+                                const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                                if (dist < 110) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(p.x, p.y);
+                                    ctx.lineTo(p2.x, p2.y);
+                                    ctx.strokeStyle = `rgba(${cr},${cg},${cb},${0.09 * (1 - dist / 110)})`;
+                                    ctx.lineWidth = 0.5;
+                                    ctx.stroke();
+                                }
+                            }
+                        });
+
+                        requestAnimationFrame(animate);
+                    };
+
+                    animate();
+                },
+
+                /* ── MAGNETIC CURSOR ────────────────────────── */
+                initCursor() {
+                    const dot = document.getElementById('cursor-dot');
+                    const ring = document.getElementById('cursor-ring');
+                    if (!dot || !ring) return;
+
+                    let mx = 0, my = 0, rx = 0, ry = 0;
+
+                    document.addEventListener('mousemove', e => {
+                        mx = e.clientX;
+                        my = e.clientY;
+                        dot.style.left = mx + 'px';
+                        dot.style.top = my + 'px';
+                    });
+
+                    const lagRing = () => {
+                        rx += (mx - rx) * 0.11;
+                        ry += (my - ry) * 0.11;
+                        ring.style.left = rx + 'px';
+                        ring.style.top = ry + 'px';
+                        requestAnimationFrame(lagRing);
+                    };
+                    lagRing();
+
+                    // Hover expand
+                    document.querySelectorAll('a, button, .magnetic-btn, .tech-pill, .slide-dot').forEach(el => {
+                        el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+                        el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+                    });
+                },
+
+                /* ── ABOUT SECTION OBSERVER (unchanged) ─────── */
                 setupScrollObserver() {
                     const observerOptions = {
                         threshold: 0.3,
                         rootMargin: '0px'
                     };
-
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
@@ -478,7 +757,7 @@
 
                     const items = this.$refs.aboutSection.querySelectorAll('.about-item');
                     items.forEach(item => observer.observe(item));
-                }
+                },
             },
         });
     </script>
