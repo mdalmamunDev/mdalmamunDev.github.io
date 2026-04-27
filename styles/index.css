@@ -7,7 +7,25 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
+.header-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease;
+  opacity: 1;
+  pointer-events: none;
+  will-change: opacity;
+}
 
+.header-bg-next {
+  opacity: 0;
+  z-index: 0;
+}
+
+.header-bg-next.fade-in {
+  opacity: 1;
+}
 
 .about-section {
   position: relative;
