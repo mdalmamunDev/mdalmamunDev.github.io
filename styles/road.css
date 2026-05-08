@@ -1,0 +1,536 @@
+/* ===================================================
+   ROAD JOURNEY SECTION
+=================================================== */
+
+.rj-outer {
+    position: relative;
+    background: #030303;
+    /* Height set by JS based on timeline items */
+}
+
+.rj-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- Header ---- */
+.rj-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2.5rem 0.6rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+}
+
+.rj-header-left { display: flex; flex-direction: column; gap: .2rem; }
+
+.rj-year-labels {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.rj-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: rgba(255,255,255,.3);
+    letter-spacing: .08em;
+}
+
+.rj-year-sep {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    color: rgba(255,255,255,.15);
+}
+
+/* ---- Scene ---- */
+.rj-scene {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+}
+
+/* ---- Road strip (center) ---- */
+.rj-road {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 36px;
+    z-index: 10;
+}
+
+.rj-road-surface {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.03) 0%,
+        rgba(255,255,255,.06) 50%,
+        rgba(255,255,255,.02) 100%
+    );
+    border-left: 1px solid rgba(255,255,255,.06);
+    border-right: 1px solid rgba(255,255,255,.06);
+}
+
+/* dashed center line */
+.rj-road-dash {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.18) 0px,
+        rgba(255,255,255,.18) 18px,
+        transparent 18px,
+        transparent 34px
+    );
+    animation: dashScroll 1.2s linear infinite;
+}
+
+@keyframes dashScroll {
+    from { background-position: 0 0; }
+    to   { background-position: 0 52px; }
+}
+
+/* ---- Tracker ---- */
+.rj-tracker {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    pointer-events: none;
+    transition: top .05s linear;
+}
+
+.rj-tracker-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rj-accent, rgba(255,255,255,.5));
+    animation: trackerPulse 2s ease-in-out infinite;
+    opacity: .6;
+}
+
+@keyframes trackerPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .5; }
+    50%       { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+.rj-tracker-core {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--rj-accent, #ffffff);
+    box-shadow: 0 0 12px var(--rj-accent, rgba(255,255,255,.8)),
+                0 0 32px var(--rj-accent, rgba(255,255,255,.3));
+    transition: background .6s ease, box-shadow .6s ease;
+}
+
+/* ---- Master Points ---- */
+.rj-master {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.rj-master-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2.5px solid;
+    background: #030303;
+    flex-shrink: 0;
+    transition: all .5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.rj-master-dot::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.rj-master.crossed .rj-master-dot::after {
+    opacity: 1;
+}
+
+.rj-master.crossed .rj-master-dot {
+    box-shadow: 0 0 16px currentColor, 0 0 32px color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.rj-master-info {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    pointer-events: none;
+}
+
+.rj-master-info.left {
+    align-items: flex-end;
+    margin-right: .7rem;
+}
+
+.rj-master-info.right {
+    margin-left: .7rem;
+}
+
+.rj-master-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    color: rgba(255,255,255,.3);
+    letter-spacing: .06em;
+    transition: color .5s;
+}
+
+.rj-master-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .82rem;
+    color: rgba(255,255,255,.45);
+    transition: color .5s;
+    white-space: nowrap;
+}
+
+.rj-master.crossed .rj-master-date,
+.rj-master.crossed .rj-master-label {
+    color: var(--mp-color, #fff);
+}
+
+/* ---- Project Nodes ---- */
+.rj-node {
+    position: absolute;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.rj-node.left {
+    right: calc(50% + 18px);
+    flex-direction: row-reverse;
+    transform-origin: right center;
+}
+
+.rj-node.right {
+    left: calc(50% + 18px);
+    flex-direction: row;
+    transform-origin: left center;
+}
+
+/* horizontal branch line */
+.rj-node-line {
+    height: 1px;
+    width: 36px;
+    flex-shrink: 0;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,.15)
+    );
+    transition: background .4s;
+}
+
+.rj-node.left .rj-node-line {
+    background: linear-gradient(
+        to left,
+        transparent,
+        rgba(255,255,255,.15)
+    );
+}
+
+.rj-node.active .rj-node-line,
+.rj-node:hover .rj-node-line {
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--rj-accent, rgba(255,255,255,.5))
+    ) !important;
+}
+
+.rj-node.left.active .rj-node-line,
+.rj-node.left:hover .rj-node-line {
+    background: linear-gradient(
+        to left,
+        transparent,
+        var(--rj-accent, rgba(255,255,255,.5))
+    ) !important;
+}
+
+/* Junction dot on road */
+.rj-node-junction {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.2);
+    transition: all .4s;
+    flex-shrink: 0;
+}
+
+.rj-node.left .rj-node-junction { right: -3px; }
+.rj-node.right .rj-node-junction { left: -3px; }
+
+.rj-node.active .rj-node-junction,
+.rj-node:hover .rj-node-junction {
+    background: var(--rj-accent, white);
+    border-color: var(--rj-accent, white);
+    box-shadow: 0 0 8px var(--rj-accent, white);
+}
+
+/* Mini card (always visible) */
+.rj-node-card {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: .45rem .65rem;
+    max-width: 160px;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+    opacity: .7;
+    flex-shrink: 0;
+}
+
+.rj-node.active .rj-node-card,
+.rj-node:hover .rj-node-card {
+    opacity: 1;
+    border-color: rgba(255,255,255,.15);
+    background: rgba(255,255,255,.07);
+}
+
+.rj-node-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: rgba(255,255,255,.05);
+}
+
+.rj-node-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .73rem;
+    color: rgba(255,255,255,.7);
+    line-height: 1.25;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.rj-node.active .rj-node-name,
+.rj-node:hover .rj-node-name {
+    color: rgba(255,255,255,.95);
+}
+
+/* ---- Detail Panel (appears for active project) ---- */
+.rj-detail-panel {
+    position: absolute;
+    z-index: 40;
+    width: 300px;
+    background: rgba(12,12,14,.95);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
+    transition: opacity .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1);
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(.92) translateY(8px);
+    backdrop-filter: blur(20px);
+}
+
+.rj-detail-panel.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+.rj-detail-panel.left-side {
+    right: calc(50% + 225px);
+}
+
+.rj-detail-panel.right-side {
+    left: calc(50% + 225px);
+}
+
+.rj-detail-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    background: rgba(255,255,255,.04);
+}
+
+.rj-detail-body {
+    padding: 1rem 1.1rem 1.1rem;
+}
+
+.rj-detail-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: .25rem;
+}
+
+.rj-detail-stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .67rem;
+    color: var(--rj-accent, rgba(255,255,255,.4));
+    letter-spacing: .04em;
+    margin-bottom: .65rem;
+    transition: color .5s;
+}
+
+.rj-detail-desc {
+    font-size: .8rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.65;
+    margin-bottom: .85rem;
+}
+
+.rj-detail-btns {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+}
+
+.rj-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: .28rem .75rem;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all .2s;
+}
+
+.rj-detail-btn.gh {
+    background: rgba(167,139,250,.12);
+    border-color: rgba(167,139,250,.25);
+    color: #a78bfa;
+}
+.rj-detail-btn.gh:hover { background: rgba(167,139,250,.22); }
+
+.rj-detail-btn.view {
+    background: rgba(96,165,250,.1);
+    border-color: rgba(96,165,250,.22);
+    color: #60a5fa;
+}
+.rj-detail-btn.view:hover { background: rgba(96,165,250,.2); }
+
+.rj-detail-btn.more {
+    background: rgba(255,255,255,.04);
+    border-color: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.45);
+}
+.rj-detail-btn.more:hover { color: #fff; background: rgba(255,255,255,.08); }
+
+/* ---- Ambient glow background (follows tracker theme) ---- */
+.rj-ambient {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(
+        circle,
+        var(--rj-accent-glow, rgba(255,255,255,.03)) 0%,
+        transparent 70%
+    );
+    transition: background .8s ease, top .12s linear;
+    filter: blur(2px);
+}
+
+/* ---- Theme vars (section level) ---- */
+#road-journey {
+    --rj-accent: rgba(255,255,255,.6);
+    --rj-accent-glow: rgba(255,255,255,.04);
+    transition: --rj-accent .8s;
+}
+
+/* ---- Scroll hint ---- */
+.rj-scroll-hint {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .35rem;
+    z-index: 25;
+    opacity: .35;
+    transition: opacity .4s;
+    pointer-events: none;
+}
+
+.rj-scroll-hint.hidden { opacity: 0; }
+
+.rj-scroll-hint span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem;
+    color: rgba(255,255,255,.6);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.rj-scroll-arrow {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+    animation: arrowBob .9s ease-in-out infinite;
+}
+
+@keyframes arrowBob {
+    0%, 100% { transform: scaleY(1); opacity: .5; }
+    50% { transform: scaleY(.6); opacity: 1; }
+}
+
+/* ---- Progress bar (thin top of scene) ---- */
+.rj-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--rj-accent, rgba(255,255,255,.4));
+    transition: width .05s linear, background .6s ease;
+    z-index: 25;
+    border-radius: 0 1px 1px 0;
+    box-shadow: 0 0 8px var(--rj-accent, rgba(255,255,255,.3));
+}

@@ -1,6 +1,16 @@
-const TYPE_ANDROID =1, TYPE_WEB= 2;
+const TYPE_ANDROID = 1, TYPE_WEB = 2;
 
 let projects = [
+    {
+        key: "wms",
+        name: "Warehouse Management System (Invent Track)",
+        description: "Led backend development team, overseeing architecture decisions, task distribution, and delivery of core modules",
+        duration: "MERN Stack",
+        repo: "https://github.com/mad-programmers3/skill-syntax",
+        link: "",
+        type: TYPE_WEB,
+        image: "wms.jpg"
+    },
     {
         key: "am-play",
         name: "AM Play",
@@ -10,7 +20,7 @@ let projects = [
         link: "projects/am-play/AM Play - MIN_8.2024.02.26.apk",
         type: TYPE_ANDROID,
         image: "am-play.png",
-        about:`
+        about: `
             <p><strong>AM Play</strong> is a feature-rich and interactive Android music player app designed to provide users with the ultimate music experience. With cutting-edge features and a sleek, glassy UI, AM Play stands out as the go-to choice for music enthusiasts.</p>
             <h2 class="mt-3 font-bold text-base text-gray-200">Features</h2>
             <ul>
