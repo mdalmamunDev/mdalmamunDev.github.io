@@ -70,7 +70,6 @@ new Vue({
     }
   },
   mounted() {
-    this.changeBannerForStack('fullstack');
     this.startAutoRotate();
     this.setupScrollObserver();
   },
