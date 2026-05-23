@@ -4,7 +4,7 @@
   const TIMELINE = [
     { type: 'project', key: 'wms', y: 0.05, side: 'left' },
     { type: 'project', key: 'auto-revive', y: 0.08, side: 'right' },
-    { type: 'master', date: '04/2025', label: 'Join Betopia', color: '#10b981', y: 0.14, side: 'right' },
+    { type: 'master', date: '04/2025', label: 'Join Betopia', color: '#f79549', y: 0.14, side: 'right' },
     // { type: 'master', date: '04/2025', label: 'End TMSS Internship', color: '#f97316', y: 0.20, side: 'left' },
     { type: 'project', key: 'file-manager', y: 0.26, side: 'left' },
     { type: 'project', key: 'skill-syntax', y: 0.31, side: 'right' },
@@ -20,8 +20,7 @@
     { type: 'project', key: 'contact', y: 0.76, side: 'left' },
     { type: 'project', key: 'unit-converter', y: 0.79, side: 'right' },
     { type: 'project', key: 'programmers-villa', y: 0.83, side: 'left' },
-    { type: 'master', date: '2018', label: 'SSC Complete', color: '#60a5fa', y: 0.88, side: 'left' },
-    { type: 'master', date: '08/2002', label: 'The Beginning', color: '#f472b6', y: 1.00, side: 'right' },
+    { type: 'master', date: '2018', label: 'SSC Complete', color: '#60a5fa', y: 0.95, side: 'left' },
   ];
 
   /* Map master points for theme-color logic (only the ones with theme color) */
@@ -29,11 +28,13 @@
 
   /* Accent colors in order of traversal (top → bottom = present → past) */
   const ACCENT_SEQUENCE = [
-    { before: 0.08, color: 'rgba(255,255,255,.55)', glow: 'rgba(255,255,255,.04)' },
-    { before: 0.20, color: '#10b981', glow: 'rgba(16,185,129,.12)' },
-    { before: 0.37, color: '#f97316', glow: 'rgba(249,115,22,.12)' },
-    { before: 0.64, color: '#facc15', glow: 'rgba(250,204,21,.1)' },
-    { before: 1.01, color: '#a78bfa', glow: 'rgba(167,139,250,.12)' },
+    // { before: 0.08, color: 'rgba(255,255,255,.55)', glow: 'rgba(255,255,255,.04)' },
+    { before: 0.14, color: '#f79549', glow: '#f7954918' },
+    // { before: 0.37, color: '#f97316', glow: 'rgba(249,115,22,.12)' },
+    { before: 0.37, color: '#facc15', glow: 'rgba(250,204,21,.1)' },
+    { before: 0.64, color: '#a78bfa', glow: 'rgba(167,139,250,.12)' },
+    { before: 95, color: '#60a5fa', glow: '#0370ff33' },
+    { before: 1.01, color: 'rgba(255,255,255,.55)', glow: 'rgba(255,255,255,.04)' },
   ];
 
   /* Build project lookup from projects array */
@@ -69,6 +70,7 @@
   }
 
   TIMELINE.forEach((item, idx) => {
+    // attach master points to road, project nodes to scene (for easier absolute positioning)
     if (item.type === 'master') {
       const el = document.createElement('div');
       el.className = 'rj-master';
